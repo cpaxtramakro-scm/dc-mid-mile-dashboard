@@ -7,7 +7,7 @@
 <meta name="description" content="DC Mid Mile Dashboard - Service Level (OTIF), Dry and Fresh Frozen, all DCs.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23306FC7'/%3E%3Crect x='6' y='17' width='9' height='9' rx='1.5' fill='%23F6C24A'/%3E%3Crect x='17' y='9' width='9' height='17' rx='1.5' fill='%23FFFFFF'/%3E%3C/svg%3E">
-<!-- built 2026-10-26 09:25 · data: sample · do not edit by hand, run scripts/build_dashboard.py -->
+<!-- built 2026-10-26 10:06 · data: sample · do not edit by hand, run scripts/build_dashboard.py -->
 <style>
 /* =====================================================================
    DC Mid Mile Dashboard · MASTER THEME (single source of truth)
@@ -152,7 +152,7 @@ body.navc .nav-foot{justify-content:center;padding:12px 0}
 .drng{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .drng span{color:var(--mute);font-size:12px}
 .dcchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.dcg{display:inline-flex;gap:4px;align-items:center;padding:2px 6px 2px 2px;border:1px solid var(--line);border-radius:8px}
+.dcg{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;padding:2px 6px 2px 2px;border:1px solid var(--line);border-radius:8px}
 .dcc{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:0 9px;border-radius:6px;border:1px solid transparent;background:var(--soft);color:var(--mute);cursor:pointer;font-size:12.5px;font-weight:700}
 .dcc::before{content:'';width:9px;height:9px;border-radius:2px;border:1.5px solid var(--mute)}
 .dcc.on{color:var(--ink);background:var(--card);border-color:var(--line)}
@@ -168,10 +168,16 @@ body.navc .nav-foot{justify-content:center;padding:12px 0}
 .slg>span{display:inline-flex;align-items:center;gap:5px}
 .lnk{background:none;border:0;padding:0;color:var(--ink);font-weight:700;cursor:pointer;font-size:12px;text-decoration:underline;text-underline-offset:2px}
 .lnk:hover{text-decoration:underline}
-body.scrolled .ptl p,body.scrolled .slg,body.scrolled #fSum{display:none}
-body.scrolled .ptl h1{font-size:16px}
-body.scrolled .rhd{padding-top:8px;padding-bottom:8px}
-body.scrolled .rhd2{margin-top:6px}
+/* compact sticky header once scrolled: desktop/tablet only (on phones the header is not sticky, so it must not change height) */
+@media (min-width:701px) and (min-height:521px){
+  body.scrolled .ptl p,body.scrolled .slg,body.scrolled #fSum{display:none}
+  body.scrolled .ptl h1{font-size:16px}
+  body.scrolled .rhd{padding-top:8px;padding-bottom:8px}
+  body.scrolled .rhd2{margin-top:6px}
+}
+[hidden]{display:none!important}
+.dpair{display:inline-flex;gap:6px;align-items:center}
+.dpair>span{color:var(--mute);font-size:12px}
 html{scroll-padding-top:calc(var(--hdr,0px) + 8px)}
 
 /* ---- page ---- */
@@ -300,6 +306,26 @@ tr.gs td{background:var(--soft);font-weight:700}
 .fline{display:block;width:calc(100% - 18px);height:3px;border-radius:2px;background:var(--mute);position:relative;justify-self:center;opacity:.6}
 .fline::after{content:'';position:absolute;right:-9px;top:-5px;border-left:10px solid var(--mute);border-top:6.5px solid transparent;border-bottom:6.5px solid transparent}
 
+/* ---- mini flow per DC ---- */
+.mfg+.mfg{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.mfgh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;margin-bottom:8px}
+.mfgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}
+.mf{border:1px solid var(--line);border-top:4px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card);display:grid;gap:2px;min-width:0}
+.mf.dry{border-top-color:var(--dry)} .mf.ff{border-top-color:var(--ff)}
+.mfh{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.mfh b{font-size:15px}
+.mfn{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mute);min-width:0}
+.mfn b{color:var(--ink)}
+.mfn svg{width:20px;height:20px;flex:0 0 20px;fill:none;stroke:var(--ink);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.mfn span{min-width:0;overflow-wrap:anywhere}
+.mfa{position:relative;margin-left:9px;border-left:2px solid var(--mute);padding:4px 0 10px 16px;display:grid;gap:4px}
+.mfa::after{content:'';position:absolute;left:-6px;bottom:-1px;border-top:8px solid var(--mute);border-left:5px solid transparent;border-right:5px solid transparent}
+.mfl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.mfc{display:flex;flex-wrap:wrap;gap:4px}
+.mchip{display:inline-flex;align-items:center;gap:3px;padding:1px 7px 1px 2px;border-radius:99px;background:var(--soft);font-size:11.5px;white-space:nowrap}
+.mchip b{font-variant-numeric:tabular-nums}
+.mchip .stg{width:15px;height:15px;font-size:9px}
+
 /* ---- SVG charts ---- */
 .chart{position:relative;height:270px}
 .chart svg{display:block;width:100%;height:100%;overflow:visible}
@@ -322,23 +348,99 @@ tr.gs td{background:var(--soft);font-weight:700}
 .kv2{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;font-size:13px;margin:12px 0}
 .kv2 dt{color:var(--mute)} .kv2 dd{margin:0}
 
-@media(max-width:980px){.flowc{grid-template-columns:1fr;gap:4px}.fnode{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 10px}.fnode svg{margin:0;width:22px;height:22px}.fnode b{display:inline}.fnode span{display:inline}.fline{display:none}}
-@media(max-width:700px){
-  .rhd{position:static;padding:12px 14px}.rst{margin-left:0}.fsum{text-align:left}
-  main{padding:14px 12px 40px}
-  .content{margin-left:56px}.card.focus{left:56px;padding:14px}
-  body:not(.navc) .nav{box-shadow:6px 0 24px rgba(0,0,0,.28)}
+/* ---- download page ---- */
+.dlf{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-end}
+.dlf input[type=date]{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:5px 8px;min-height:32px;color:var(--ink);font-size:13px}
+.dlb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.dlcols{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.dlg{border:1px solid var(--line);border-radius:8px;padding:6px 10px 8px;margin:0;min-width:0}
+.dlg legend{font-size:12px;font-weight:700;padding:0 4px}
+.dlc{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:5px 0;cursor:pointer;line-height:1.3}
+.dlc input{margin:1px 0 0;width:16px;height:16px;flex:0 0 16px;accent-color:var(--sel-bg)}
+.dlsum{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:10px;font-size:13px}
+.dls{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
+.dlgo{background:var(--sel-bg);color:var(--sel-ink);border-color:var(--sel-bg);font-weight:700;min-height:38px;padding:6px 16px}
+.dlgo:hover{background:var(--sel-bg);opacity:.9}
+.dlgo:disabled{opacity:.4;cursor:not-allowed}
+
+/* ---- phone top bar + slide-in menu + filters toggle (hidden on desktop/tablet) ---- */
+.mbar,.scrim,.ftgw{display:none}
+.psn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ftg{display:inline-flex;align-items:center;gap:8px;min-height:38px;font-weight:700}
+.ftg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.ftg b{background:var(--sel-bg);color:var(--sel-ink);border-radius:99px;font-size:11px;min-width:20px;height:20px;display:inline-grid;place-items:center;padding:0 6px}
+.ftg b:empty{display:none}
+
+@media(max-width:980px){.flowc{grid-template-columns:1fr;gap:4px}.fnode{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;padding:8px 10px}.fnode svg{margin:0;width:22px;height:22px}.fnode b{display:inline}.fnode span{display:inline}.fline{display:none}}
+
+/* phone: portrait (narrow) OR landscape (short) */
+@media (max-width:700px), (max-height:520px){
+  .mbar{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:28;height:48px;padding:0 max(12px,env(safe-area-inset-right)) 0 max(12px,env(safe-area-inset-left));background:var(--nav-bg);color:#fff}
+  .mnav{width:40px;height:40px;flex:0 0 40px;border:0;border-radius:8px;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;cursor:pointer}
+  .mnav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .mnav:focus-visible{outline:2px solid #fff;outline-offset:1px}
+  .mbar .logo{width:28px;height:28px;flex:0 0 28px;font-size:12px}
+  .mtitle{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;background:none;border:0;color:#fff;padding:0;cursor:pointer;text-align:left}
+  .ftgw{display:flex;margin-top:8px}
+  .rhd2,.slg{display:none}
+  body.fopen .rhd2,body.fopen .slg{display:flex}
+  .totop{display:none!important}
+  .nav{width:min(280px,86vw);transform:translateX(-105%);transition:transform .2s ease;z-index:45;padding-left:env(safe-area-inset-left)}
+  body.navopen .nav{transform:none;box-shadow:6px 0 24px rgba(0,0,0,.28)}
+  .scrim{display:block;position:fixed;inset:0;background:rgba(15,21,30,.45);z-index:44}
+  body.navopen{overflow:hidden}
+  .content{margin-left:0;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  .rhd{position:static;padding:12px 14px;box-shadow:none}
+  .rst{margin-left:0}
+  .fsum{text-align:left}
+  .ptl{flex-basis:100%}
+  .ptl h1{font-size:20px}
+  .ptl h1 small{display:block;margin:2px 0 0}
+  main{padding:14px 12px 56px}
+  .card.focus{left:0;top:0;z-index:46;padding:14px}
+  .card.focus>.ch{top:-14px}
   .psec{padding:2px 10px 12px}.pst h2{font-size:16px}.psx span{display:none}
   .kv{font-size:22px}
-  .fun .fr{grid-template-columns:100px 1fr 110px}
-  .hbr{grid-template-columns:90px 1fr 100px}
+  .drawer{width:min(480px,100%);padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) 24px 14px}
+}
+/* phone portrait: stack controls and value rows so nothing overlaps */
+@media (max-width:700px){
+  .rhd2{gap:10px}
+  .slc-date,.slc-dc{flex:1 1 100%}
+  .drng{width:100%}
+  .drng select{flex:1 1 100%;min-width:0}
+  .dpair{display:flex;flex:1 1 100%}
+  .dpair input{flex:1 1 0;min-width:0}
+  label.slc{flex:1 1 140px;min-width:0}
+  label.slc select{width:100%;min-width:0}
+  .hbr{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"l v" "t t";row-gap:3px}
+  .hbr .hbl{grid-area:l}.hbr .hbt{grid-area:t}.hbr .hbv{grid-area:v}
+  .fun .fr{grid-template-columns:minmax(0,1fr);row-gap:2px}
+  .chart{height:240px}
+  th,td{padding:6px 8px}
+  .dlf>.slc{flex:1 1 100%}
+  .dlf .seg{display:flex;flex-wrap:wrap}
+  .dlf .seg button{flex:1 1 auto}
+  .dlf .drng input{flex:1 1 0;min-width:0}
+  .dlgi{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));column-gap:10px}
+}
+/* phone landscape: keep the page title short so content starts sooner */
+@media (max-height:520px){
+  .ptl p{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .ptl h1 small{display:inline;margin-left:8px}
 }
 @media(prefers-reduced-motion:reduce){.drawer,.nav,.content{transition:none}}
 
 </style>
 </head>
 <body>
-<nav class="nav" id="nav" aria-label="Report sections">
+<div class="mbar" id="mbar">
+  <button class="mnav" id="mnav" aria-label="Open menu" aria-controls="nav" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <div class="logo">MM</div>
+  <button class="mtitle" id="mtop" title="Back to top">DC Mid Mile Dashboard</button>
+</div>
+<div class="scrim" id="scrim" hidden></div>
+<nav class="nav" id="nav" aria-label="Report pages and sections">
   <div class="nav-top">
     <div class="logo">MM</div>
     <div class="nav-brand"><b>DC Mid Mile</b><span>Dashboard</span></div>
@@ -349,6 +451,8 @@ tr.gs td{background:var(--soft);font-weight:700}
     <button class="ni on" data-jump="top" title="End-to-end flow" aria-label="End-to-end flow" aria-current="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/><path d="M7.5 12h9"/><path d="M13.5 9l3 3-3 3"/></svg><span>End-to-end flow</span></button>
     <button class="ni" data-jump="sec1" title="1 · Supplier → DC" aria-label="1 · Supplier → DC"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M8 10l4 4 4-4"/><path d="M4 14v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg><span>1 · Supplier → DC</span></button>
     <button class="ni" data-jump="sec2" title="2 · DC → Store" aria-label="2 · DC → Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span>2 · DC → Store</span></button>
+    <div class="nav-sec" role="presentation">Data</div>
+    <button class="ni" data-view="dl" title="Download data" aria-label="Download data"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19h14"/></svg><span>Download data</span></button>
     <div class="nav-sec" role="presentation">Reference</div>
     <button class="ni" data-jump="defs" title="KPI definitions" aria-label="KPI definitions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></svg><span>KPI definitions</span></button>
   </div>
@@ -357,24 +461,25 @@ tr.gs td{background:var(--soft);font-weight:700}
 <div class="content" id="content">
   <header class="rhd" id="hdr">
     <div class="rhd1">
-      <div class="ptl"><h1>DC Mid Mile Dashboard<small>Service Level (OTIF)</small></h1><p>Did suppliers deliver to the DC, and did the DC deliver to stores, on time and in full? How long did each leg take? Dry and Fresh Frozen are shown together, for every DC.</p></div>
+      <div class="ptl"><h1>DC Mid Mile Dashboard<small id="pgSub">Service Level (OTIF)</small></h1><p id="pgQ">Did suppliers deliver to the DC, and did the DC deliver to stores, on time and in full? How long did each leg take? Dry and Fresh Frozen are shown together, for every DC.</p></div>
       <div class="fsum" id="fSum" aria-live="polite"></div>
     </div>
+    <div class="ftgw"><button class="btn ftg" id="ftg" aria-expanded="false" aria-controls="rhd2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span id="ftgL">Filters</span><b id="ftgN"></b></button></div>
     <div class="rhd2" id="rhd2">
-      <div class="slc"><span class="slh">Date range</span>
+      <div class="slc slc-date"><span class="slh">Date range</span>
         <div class="drng">
           <select id="fPre" aria-label="Date range preset">
             <option value="l7">Last 7 days</option><option value="l30">Last 30 days</option><option value="tw">This week</option><option value="lw">Last week</option>
             <option value="mtd">This month</option><option value="lm">Last month</option><option value="l90">Last 3 months</option><option value="all">All data</option><option value="custom">Custom…</option>
           </select>
-          <input type="date" id="fFrom" aria-label="From date"><span>to</span><input type="date" id="fTo" aria-label="To date">
+          <span class="dpair"><input type="date" id="fFrom" aria-label="From date"><span>to</span><input type="date" id="fTo" aria-label="To date"></span>
         </div>
       </div>
-      <div class="slc"><span class="slh">Trend by</span><div class="seg" id="fGran" role="group" aria-label="Trend grain"><button data-g="day">Day</button><button data-g="week">Week</button><button data-g="month">Month</button></div></div>
-      <div class="slc"><span class="slh">DCs</span><div class="dcchips" id="fDcs"></div></div>
+      <div class="slc" id="slGran"><span class="slh">Trend by</span><div class="seg" id="fGran" role="group" aria-label="Trend grain"><button data-g="day">Day</button><button data-g="week">Week</button><button data-g="month">Month</button></div></div>
+      <div class="slc slc-dc"><span class="slh">DCs</span><div class="dcchips" id="fDcs"></div></div>
       <div class="slc"><span class="slh">FF unit</span><div class="seg" id="fUnit" role="group" aria-label="Fresh Frozen unit"><button data-u="kg">kg</button><button data-u="ton">ton</button></div></div>
-      <label class="slc"><span class="slh">Region <span class="mute">(section 2)</span></span><select id="sReg"></select></label>
-      <label class="slc"><span class="slh">Store grade <span class="mute">(section 2)</span></span><select id="sGrd"></select></label>
+      <label class="slc"><span class="slh">Region <span class="mute">(DC → Store)</span></span><select id="sReg"></select></label>
+      <label class="slc"><span class="slh">Store grade <span class="mute">(DC → Store)</span></span><select id="sGrd"></select></label>
       <button class="btn rst" id="fReset" title="Reset all filters to defaults">&#8634; Reset filters</button>
     </div>
     <div class="slg" id="sLeg"></div>
@@ -546,6 +651,57 @@ window.DCMM_DATA={
 </script>
 <script>
 /* =====================================================================
+   PO detail for the "Download data" page.
+   Real data: data/dcmm_data.js may carry DCMM_DATA.supplierPOs and
+   DCMM_DATA.storePOs (see docs/DATA_SCHEMA.md). They are used as they are.
+   Sample data: PO lines are derived from supplierDaily / storeDaily with a
+   separate fixed seed, split so that every total matches the dashboard
+   exactly (PO qty, received, on-time, qty-weighted lead times).
+   Generated lazily, only when the Download page needs it.
+   ===================================================================== */
+(function(){
+const D=window.DCMM_DATA;if(!D)return;
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const addDays=(s,n)=>{const x=new Date(s+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)};
+const dt=ms=>new Date(ms).toISOString().slice(0,16).replace('T',' ');
+const shuffle=(a,R)=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+/* smallest pool (at least k items, in random order) whose quantity covers `need` with 2% headroom */
+function pool(order,k,qty,need){const p=[];let cap=0;if(need<=0)return{p,cap};for(const i of order){if(p.length>=k&&cap>=need*1.02)break;p.push(i);cap+=qty[i]}return{p,cap}}
+
+let SUP=null,STO=null;
+function supplierPOs(){if(SUP)return SUP;if(Array.isArray(D.supplierPOs))return SUP=D.supplierPOs;
+  const R=rng(4242),out=[];let seq=0;
+  for(const r of D.supplierDaily){
+    const n=Math.max(1,r.poN|0),w=[];let W=0;for(let i=0;i<n;i++){const x=.4+R();w.push(x);W+=x}
+    const po=w.map(x=>r.poQ*x/W),idx=[...Array(n).keys()];
+    const S=Math.max(0,r.poQ-r.rcvQ),a=pool(shuffle(idx.slice(),R),r.shortN|0,po,S),rcv=po.slice();
+    a.p.forEach(i=>{rcv[i]=po[i]-S*po[i]/a.cap});
+    const L=Math.max(0,r.rcvQ-r.otQ),b=pool(shuffle(idx.slice(),R),r.lateN|0,rcv,L),ot=rcv.slice();
+    b.p.forEach(i=>{ot[i]=rcv[i]-L*rcv[i]/b.cap});
+    const a1=r.rcvQ?r.l1/r.rcvQ:NaN,a2=r.rcvQ?r.l2/r.rcvQ:NaN,a3=r.rcvQ?r.l3/r.rcvQ:NaN;
+    const issued=addDays(r.d,-Math.round((a1||0)+(a2||0))),booking=addDays(issued,Math.round(a1||0));
+    for(let i=0;i<n;i++){seq++;const late=rcv[i]-ot[i]>po[i]*1e-6;
+      out.push({po:'PO'+(4500000000+seq),d:r.d,div:r.div,dc:r.dc,sup:r.sup,issued,booking,appt:r.d,receipt:late?addDays(r.d,Math.max(1,Math.round(a3||0))):r.d,
+        poQ:po[i],rcvQ:rcv[i],otQ:ot[i],a1,a2,a3})}}
+  out.sort((x,y)=>x.d<y.d?-1:x.d>y.d?1:x.po<y.po?-1:1);
+  return SUP=out}
+
+function storePOs(){if(STO)return STO;if(Array.isArray(D.storePOs))return STO=D.storePOs;
+  const out=[];
+  for(const r of D.storeDaily){
+    const h1=r.s1/r.stQ,h2=r.s2/r.stQ,h3=r.s3/r.stQ,h4=r.s4/r.stQ,lateSh=r.stQ?(r.stQ-r.otQ)/r.stQ:0;
+    const arr=Date.parse(r.d+'T06:00:00Z')+(lateSh>.025?Math.round(2+60*lateSh)*36e5:0),disp=arr-h4*36e5,pick=disp-h3*36e5,doT=pick-h2*36e5,poT=doT-h1*36e5;
+    out.push({po:`SPO-${r.div}${r.store.replace(/\D/g,'')}-${r.d.replace(/-/g,'').slice(2)}`,d:r.d,div:r.div,dc:r.dc,store:r.store,reg:r.reg,grd:r.grd,
+      poQ:r.poQ,dcQ:r.dcQ,stQ:r.stQ,otQ:r.otQ,h1,h2,h3,h4,tPO:dt(poT),tDO:dt(doT),tPick:dt(pick),tDisp:dt(disp),tArr:dt(arr)})}
+  out.sort((x,y)=>x.d<y.d?-1:x.d>y.d?1:x.po<y.po?-1:1);
+  return STO=out}
+
+window.DCMM_PO={supplierPOs,storePOs,isSample:!(Array.isArray(D.supplierPOs)&&Array.isArray(D.storePOs))};
+})();
+
+</script>
+<script>
+/* =====================================================================
    DC Mid Mile Dashboard · Service Level (OTIF)
    Dry and Fresh Frozen side by side · every DC · date-range selection
    Reads window.DCMM_DATA (sample_data.js now, data/dcmm_data.js later)
@@ -616,7 +772,7 @@ const TDEF=[
 const TB=Object.fromEntries(TDEF.map(t=>[t.k,t])),T=k=>TB[k].d;
 const st=(k,v)=>{if(!isFinite(v))return'';const t=TB[k],r=t.t==='pct'?Math.round(v*1000)/1000:Math.round(v*10)/10,d=(t.hb?r-t.d:t.d-r)+1e-9;return d>=0?'ok':d>=-t.b?'warn':'bad'};
 const STN={ok:'On target',warn:'Near target',bad:'Below target'};
-const fk=(k,v)=>TB[k].t==='pct'?P(v):TB[k].t==='h'?F1(v)+' h':F1(v)+' d';
+const fk=(k,v)=>!isFinite(v)?'-':TB[k].t==='pct'?P(v):TB[k].t==='h'?F1(v)+' h':F1(v)+' d';
 const tg=k=>TB[k].t==='pct'?P(T(k),Math.round(T(k)*1000)%10?1:0):`${T(k)} ${TB[k].t==='h'?'h':'d'}`;
 const glyph=s=>s?`<span class="stg ${s}" role="img" aria-label="${STN[s]}" title="${STN[s]}"></span>`:'';
 const sv=(k,v)=>`${glyph(st(k,v))} ${fk(k,v)}`;
@@ -693,8 +849,11 @@ const ic=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>`;
 
 /* ================= render ================= */
 let CTX={};
+let VIEW=(()=>{try{return location.hash==='#download'?'dl':'dash'}catch(e){return'dash'}})();
+function setView(v){VIEW=v;try{history.replaceState(null,'',v==='dl'?'#download':location.pathname+location.search)}catch(e){}}
 function render(){
   DCChart.reset();clearFocus();closeDrawer();syncCtl();
+  if(VIEW==='dl'){renderDL();spy();fitHdr();return}
   const len=nDays(S.from,S.to),pa=addDays(S.from,-len),pb=addDays(S.from,-1);
   PREV={len,a:pa,b:pb,ok:pa>=START};
   const sl=fSup(S.from,S.to),tl=fSto(S.from,S.to),slp=PREV.ok?fSup(pa,pb):[],tlp=PREV.ok?fSto(pa,pb):[];
@@ -720,6 +879,20 @@ function render(){
     <div class="fnode">${ic('store')}<b>Store</b>${DIVS.map(v=>`<span>${DIV[v].n}: ${N(by[v].tb._n.size)} stores</span>`).join('')}${S.reg!=='ALL'||S.grd!=='ALL'?'<span>(filtered)</span>':''}</div>
    </div>
    <div class="note"><b>How to read</b> — Each arrow has a <b>Dry</b> row (yellow) and an <b>FF</b> row (blue). ✓ / ! / ✕ show status against target. Section 1 is the supplier’s delivery into the DC. Section 2 is the DC + middle-mile delivery to stores: <b>Raw</b> compares with the store PO (a supplier shortfall also pulls it down); <b>Adjusted</b> compares with what the DC received for that store PO. Supplier lead time is in days, store lead time in hours. Click an arrow to jump to that section.</div>`,{sub:`${rangeLab} · Dry in cases · FF in ${U('F')}`});
+
+  /* ---- end-to-end flow · one mini flow per DC ---- */
+  const mchip=(lbl,k,v)=>`<span class="mchip">${glyph(st(k,v))}${lbl} <b>${fk(k,v)}</b></span>`;
+  const miniFlow=dc=>{const v=dc.div,s=sumOf(by[v].s.filter(r=>r.dc===dc.id),SUPK,'sup'),t=sumOf(by[v].t.filter(r=>r.dc===dc.id),STK,'store'),m=SM(s),n=TM(t);
+    return`<article class="mf ${DIV[v].cls}" aria-label="${DIV[v].full} ${esc(dc.name)} end-to-end flow">
+     <div class="mfh">${tag(v)}<b>${esc(dc.name)}</b><span class="sub">${DIV[v].full}</span></div>
+     <div class="mfn">${ic('sup')}<span><b>Supplier</b> · ${N(s._n.size)} suppliers · ${N(s.poN)} POs</span></div>
+     <div class="mfa"><span class="mfl">1 · Supplier → DC</span><span class="mfc">${mchip('OTIF','supOtif',m.otif)}${mchip('OT','supOt',m.ot)}${mchip('IF','supIf',m.if)}${mchip('LT','supLt',m.lt)}</span></div>
+     <div class="mfn">${ic('dc')}<span><b>DC ${esc(dc.name)}</b> · received ${fv(s.rcvQ,v)} ${U(v)}</span></div>
+     <div class="mfa"><span class="mfl">2 · DC → Store</span><span class="mfc">${mchip('OTIF Raw','otifR',n.otifR)}${mchip('OTIF Adj.','otifA',n.otifA)}${mchip('LT','lt',n.lt)}${mchip('Transit','tr',n.tr)}</span></div>
+     <div class="mfn">${ic('store')}<span><b>Store</b> · ${N(t._n.size)} stores · on time ${fv(t.otQ,v)} ${U(v)}</span></div>
+    </article>`};
+  const e2eDc=card('End-to-end flow · by DC',DIVS.map(v=>`<div class="mfg"><div class="mfgh">${tag(v)} <b>${DIV[v].full} DCs</b> <span class="mute">· quantities in ${U(v)}</span></div>${by[v].dcl.length?`<div class="mfgrid">${by[v].dcl.map(miniFlow).join('')}</div>`:`<p class="mute" style="margin:4px 0 0">No ${DIV[v].full} DC selected — use the DC chips at the top.</p>`}</div>`).join(''),
+    {sub:`${rangeLab} · one flow per DC · ✓ on target · ! near · ✕ below · Region / Store grade filters apply to the DC → Store leg`});
 
   /* ---- section 1 · Supplier → DC ---- */
   const pp={pp:true};
@@ -792,7 +965,7 @@ function render(){
    ${card('2 · DC → Store',`<div class="tw free"><table>${dHead}<tbody>${TDEF.filter(x=>x.sec===2).map(dRow).join('')}</tbody></table></div>`)}
    <div class="note"><b>Rules</b> — ① OTIF% = OT% × IF% on both legs. ② Raw = against the PO quantity; Adjusted = against the quantity received at the DC for that store PO, so a supplier shortfall is not counted against the DC + middle mile. ③ “On time” = received on or before the appointment date (supplier) / the promised store delivery date (store) — <i>to confirm</i>. ④ Lines count on the PO requested delivery date (supplier) / planned store delivery date (store). ⑤ Per PO line, received is capped at PO qty and on-time at received. ⑥ <b>Dry</b> is measured in cases (yellow), <b>Fresh Frozen</b> in kg, shown in kg or tons (blue). Dry and FF are always shown side by side and never added together. ⑦ Lead times are calendar-time averages weighted by received quantity. ⑧ The period is the selected date range, including the latest days (in progress). ▲ / ▼ compare with the same number of days just before the range. ⑨ Targets are examples, the same for Dry and FF for now. ⑩ Status: ✓ green = on target · ! orange = near target · ✕ red = below target.</div>`;
 
-  $('#main').innerHTML=`${e2e}
+  $('#main').innerHTML=`${e2e}${e2eDc}
    ${sec('sec1','1','Supplier → DC','Did suppliers deliver the PO quantity to the DC on time and in full, and how long from PO issued to receipt?',s1)}
    ${sec('sec2','2','DC → Store','Did stores receive their PO quantity on time and in full, and how long from store PO to store receipt? Region and Store grade filters apply here.',s2)}
    ${sec('defs','i','KPI definitions','How each KPI is calculated, the unit basis and the example targets.',defs)}`;
@@ -811,6 +984,122 @@ function render(){
   $('#supQ').oninput=e=>{SQ.sup=e.target.value;supOut()};$('#stoQ').oninput=e=>{SQ.sto=e.target.value;stoOut()};
   supOut();stoOut();spy();fitHdr();
 }
+
+/* ================= Download data page (PO detail → CSV) ================= */
+const TOL=.025;                                                   // status tolerance (sample data)
+const r2=(x,d)=>isFinite(x)?+x.toFixed(d):'';
+const qx=(x,v)=>v==='D'?r2(x,2):S.ffu==='kg'?r2(x*1000,2):r2(x,4);      // export quantity in the unit shown
+const px=x=>isFinite(x)?r2(x*100,2):'';
+const stat=(late,short)=>late&&short?'Late & short':late?'Late':short?'Short':'On time & in full';
+const DLCOLS={
+ sto:[
+  {k:'po',h:'Store PO no.',g:'PO',def:1,v:r=>r.po},
+  {k:'div',h:'Division',g:'PO',def:1,v:r=>DIV[r.div].full},
+  {k:'dc',h:'DC',g:'PO',def:1,v:r=>dcN(r.dc)},
+  {k:'store',h:'Store no.',g:'Store',def:1,v:r=>r.store},
+  {k:'storeName',h:'Store name',g:'Store',def:1,v:r=>STB[r.store]?STB[r.store].name:''},
+  {k:'reg',h:'Region',g:'Store',def:1,v:r=>REGN[r.reg]||r.reg},
+  {k:'grd',h:'Store grade',g:'Store',def:0,v:r=>r.grd},
+  {k:'d',h:'Planned delivery date',g:'Dates & times',def:1,v:r=>r.d},
+  {k:'tPO',h:'PO created',g:'Dates & times',def:0,v:r=>r.tPO},
+  {k:'tDO',h:'DO created',g:'Dates & times',def:0,v:r=>r.tDO},
+  {k:'tPick',h:'Picking done',g:'Dates & times',def:0,v:r=>r.tPick},
+  {k:'tDisp',h:'Dispatched',g:'Dates & times',def:0,v:r=>r.tDisp},
+  {k:'tArr',h:'Store arrival',g:'Dates & times',def:1,v:r=>r.tArr},
+  {k:'unit',h:'Unit',g:'Quantities',def:1,v:r=>U(r.div)},
+  {k:'poQ',h:'PO qty',g:'Quantities',def:1,n:1,v:r=>qx(r.poQ,r.div)},
+  {k:'dcQ',h:'Received at DC (for PO)',g:'Quantities',def:1,n:1,v:r=>qx(r.dcQ,r.div)},
+  {k:'stQ',h:'Received at store',g:'Quantities',def:1,n:1,v:r=>qx(r.stQ,r.div)},
+  {k:'otQ',h:'On-time qty',g:'Quantities',def:1,n:1,v:r=>qx(r.otQ,r.div)},
+  {k:'shortQ',h:'Short qty (PO − store)',g:'Quantities',def:0,n:1,v:r=>qx(r.poQ-r.stQ,r.div)},
+  {k:'lateQ',h:'Late qty',g:'Quantities',def:0,n:1,v:r=>qx(r.stQ-r.otQ,r.div)},
+  {k:'otifR',h:'OTIF % Raw',g:'KPIs',def:1,n:1,v:r=>px(r.otQ/r.poQ)},
+  {k:'otifA',h:'OTIF % Adjusted',g:'KPIs',def:1,n:1,v:r=>px(r.otQ/r.dcQ)},
+  {k:'ot',h:'OT %',g:'KPIs',def:0,n:1,v:r=>px(r.otQ/r.stQ)},
+  {k:'ifR',h:'IF % Raw',g:'KPIs',def:0,n:1,v:r=>px(r.stQ/r.poQ)},
+  {k:'ifA',h:'IF % Adjusted',g:'KPIs',def:0,n:1,v:r=>px(r.stQ/r.dcQ)},
+  {k:'status',h:'Status',g:'KPIs',def:1,v:r=>stat((r.stQ-r.otQ)>r.stQ*TOL,(r.poQ-r.stQ)>r.poQ*TOL)},
+  {k:'h1',h:'PO → DO (h)',g:'Lead time',def:0,n:1,v:r=>r2(r.h1,2)},
+  {k:'h2',h:'DO → Picking done (h)',g:'Lead time',def:0,n:1,v:r=>r2(r.h2,2)},
+  {k:'h3',h:'Picking → Dispatch (h)',g:'Lead time',def:0,n:1,v:r=>r2(r.h3,2)},
+  {k:'h4',h:'Transit (h)',g:'Lead time',def:1,n:1,v:r=>r2(r.h4,2)},
+  {k:'hT',h:'Lead time total (h)',g:'Lead time',def:1,n:1,v:r=>r2(r.h1+r.h2+r.h3+r.h4,2)}],
+ sup:[
+  {k:'po',h:'PO no.',g:'PO',def:1,v:r=>r.po},
+  {k:'div',h:'Division',g:'PO',def:1,v:r=>DIV[r.div].full},
+  {k:'dc',h:'DC',g:'PO',def:1,v:r=>dcN(r.dc)},
+  {k:'supId',h:'Supplier code',g:'Supplier',def:0,v:r=>r.sup},
+  {k:'supName',h:'Supplier',g:'Supplier',def:1,v:r=>SUPB[r.sup]?SUPB[r.sup].name:''},
+  {k:'d',h:'Requested delivery date',g:'Dates',def:1,v:r=>r.d},
+  {k:'issued',h:'PO issued date',g:'Dates',def:0,v:r=>r.issued},
+  {k:'booking',h:'Booking date',g:'Dates',def:0,v:r=>r.booking},
+  {k:'appt',h:'Appointment date',g:'Dates',def:0,v:r=>r.appt},
+  {k:'receipt',h:'Receipt date',g:'Dates',def:1,v:r=>r.receipt},
+  {k:'unit',h:'Unit',g:'Quantities',def:1,v:r=>U(r.div)},
+  {k:'poQ',h:'PO qty',g:'Quantities',def:1,n:1,v:r=>qx(r.poQ,r.div)},
+  {k:'rcvQ',h:'Received at DC',g:'Quantities',def:1,n:1,v:r=>qx(r.rcvQ,r.div)},
+  {k:'otQ',h:'On-time qty',g:'Quantities',def:1,n:1,v:r=>qx(r.otQ,r.div)},
+  {k:'shortQ',h:'Short qty (PO − received)',g:'Quantities',def:0,n:1,v:r=>qx(r.poQ-r.rcvQ,r.div)},
+  {k:'lateQ',h:'Late qty',g:'Quantities',def:0,n:1,v:r=>qx(r.rcvQ-r.otQ,r.div)},
+  {k:'otif',h:'OTIF %',g:'KPIs',def:1,n:1,v:r=>px(r.otQ/r.poQ)},
+  {k:'ot',h:'OT %',g:'KPIs',def:0,n:1,v:r=>px(r.otQ/r.rcvQ)},
+  {k:'if',h:'IF %',g:'KPIs',def:0,n:1,v:r=>px(r.rcvQ/r.poQ)},
+  {k:'status',h:'Status',g:'KPIs',def:1,v:r=>stat(r.rcvQ-r.otQ>r.poQ*1e-6,r.poQ-r.rcvQ>r.poQ*1e-6)},
+  {k:'a1',h:'PO → Booking (d)',g:'Lead time',def:0,n:1,v:r=>r2(r.a1,2)},
+  {k:'a2',h:'Booking → Appointment (d)',g:'Lead time',def:0,n:1,v:r=>r2(r.a2,2)},
+  {k:'a3',h:'Appointment → Receipt (d)',g:'Lead time',def:0,n:1,v:r=>r2(r.a3,2)},
+  {k:'aT',h:'Lead time total (d)',g:'Lead time',def:1,n:1,v:r=>r2(r.a1+r.a2+r.a3,2)}]};
+const DLK='dcmm_dl_v1';
+const DL={type:'sto',div:'ALL',cols:{sto:new Set(DLCOLS.sto.filter(c=>c.def).map(c=>c.k)),sup:new Set(DLCOLS.sup.filter(c=>c.def).map(c=>c.k))}};
+try{const s=JSON.parse(localStorage.getItem(DLK)||'null');if(s){if(s.type==='sto'||s.type==='sup')DL.type=s.type;if(['ALL','D','F'].includes(s.div))DL.div=s.div;['sto','sup'].forEach(t=>{if(Array.isArray(s.cols&&s.cols[t])){const ok=s.cols[t].filter(k=>DLCOLS[t].some(c=>c.k===k));if(ok.length)DL.cols[t]=new Set(ok)}})}}catch(e){}
+const saveDL=()=>{try{localStorage.setItem(DLK,JSON.stringify({type:DL.type,div:DL.div,cols:{sto:[...DL.cols.sto],sup:[...DL.cols.sup]}}))}catch(e){}};
+const DLN={sto:'Store PO · DC → Store',sup:'Supplier PO · Supplier → DC'};
+const POD=()=>window.DCMM_PO||{supplierPOs:()=>[],storePOs:()=>[],isSample:true};
+function dlRows(){const a=S.from,b=S.to,okDiv=r=>DL.div==='ALL'||r.div===DL.div;
+  if(DL.type==='sup')return POD().supplierPOs().filter(r=>r.d>=a&&r.d<=b&&S.dcs.has(r.dc)&&okDiv(r));
+  return POD().storePOs().filter(r=>r.d>=a&&r.d<=b&&S.dcs.has(r.dc)&&okDiv(r)&&(S.reg==='ALL'||r.reg===S.reg)&&(S.grd==='ALL'||r.grd===S.grd))}
+/* Unit (and Division when Dry + FF) are always exported with any quantity column, so cases and tons are never mixed unlabelled */
+const dlForced=()=>{const t=DL.type,s=DL.cols[t],f=new Set();if(DLCOLS[t].some(c=>c.g==='Quantities'&&c.n&&s.has(c.k))){f.add('unit');if(DL.div==='ALL')f.add('div')}return f};
+const dlCols=()=>{const f=dlForced();return DLCOLS[DL.type].filter(c=>DL.cols[DL.type].has(c.k)||f.has(c.k))};
+function renderDL(){
+  const len=nDays(S.from,S.to),t=DL.type,groups=[...new Set(DLCOLS[t].map(c=>c.g))];
+  const seg=(attr,items,cur)=>`<div class="seg" role="group">${items.map(([v,l])=>`<button ${attr}="${v}" class="${cur===v?'on':''}" aria-pressed="${cur===v}">${l}</button>`).join('')}</div>`;
+  const step1=card('1 · Choose the data',`
+    <div class="dlf">
+     <div class="slc"><span class="slh">PO type</span>${seg('data-dlt',[['sto','Store PO (DC → Store)'],['sup','Supplier PO (Supplier → DC)']],t)}</div>
+     <div class="slc"><span class="slh">Division</span>${seg('data-dldiv',[['ALL','Dry + FF'],['D','Dry'],['F','FF']],DL.div)}</div>
+     <div class="slc"><span class="slh">Date range</span><div class="drng"><input type="date" id="dlFrom" value="${S.from}" min="${START}" max="${LAST}" aria-label="Download from date"><span>to</span><input type="date" id="dlTo" value="${S.to}" min="${START}" max="${LAST}" aria-label="Download to date"></div></div>
+    </div>
+    <div class="note">Date range, DC chips and FF unit at the top apply here too${t==='sto'?', and so do Region and Store grade':''}. The date is the ${t==='sto'?'planned store delivery date':'requested delivery date'} (${len} day${len>1?'s':''}: ${dL(S.from)} – ${dL(S.to)}).</div>`,{sub:'What to export'});
+  const step2=card('2 · Choose the columns',`
+    <div class="dlb"><button class="btn" data-colset="all">Select all</button><button class="btn" data-colset="def">Default</button><button class="btn" data-colset="none">Clear</button><span class="sub" id="dlColCnt"></span></div>
+    <div class="dlcols">${groups.map(g=>`<fieldset class="dlg"><legend>${g}</legend><div class="dlgi">${DLCOLS[t].filter(c=>c.g===g).map(c=>`<label class="dlc"><input type="checkbox" data-col="${c.k}" ${DL.cols[t].has(c.k)?'checked':''}> ${c.h}</label>`).join('')}</div></fieldset>`).join('')}</div>`,{sub:'Ticked columns go into the file, in this order'});
+  const step3=card('3 · Preview & download',`
+    <div class="dlsum" id="dlSum"></div>
+    <div class="dlb"><button class="btn dlgo" id="dlGo">&#8681; Download CSV</button><span class="sub" id="dlInfo"></span></div>
+    <div id="dlPrev"></div>
+    <div class="note">CSV (UTF-8) opens directly in Excel, Power BI, Python or R. One row per PO. Dry quantities are in cases and FF quantities in ${U('F')} (switch at the top), with a <b>Unit</b> column. No totals in the file: Dry and FF are never added together.${POD().isSample?` <b>Sample data:</b> PO numbers, dates and the split into POs are generated so that the totals match the dashboard exactly. Store PO status uses a ${TOL*100}% tolerance. Real PO lines will come from automail.`:''}</div>`,{sub:'First 20 rows'});
+  $('#main').innerHTML=sec('dl','<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19h14"/></svg>','Download data','Export PO-level detail for your own analysis: pick the PO type, date range and columns, then download a CSV.',step1+step2+step3);
+  dlOut();
+}
+function dlOut(){const rows=dlRows(),cols=dlCols(),t=DL.type;
+  const forced=dlForced();document.querySelectorAll('[data-col]').forEach(x=>{const f=forced.has(x.dataset.col);x.checked=f||DL.cols[t].has(x.dataset.col);x.disabled=f;x.title=f?'Always included with quantity columns':''});
+  $('#dlColCnt').textContent=`${cols.length} of ${DLCOLS[t].length} columns${forced.size?' · Unit'+(forced.has('div')?' and Division are':' is')+' always included with quantities':''}`;
+  const by=DIVS.filter(v=>DL.div==='ALL'||DL.div===v).map(v=>{const rr=rows.filter(r=>r.div===v),po=rr.reduce((a,r)=>a+r.poQ,0),ot=rr.reduce((a,r)=>a+r.otQ,0);
+    return`<span class="dls">${tag(v)} <b>${N(rr.length)}</b> POs · PO qty <b>${fv(po,v)}</b> ${U(v)} · ${t==='sto'?'OTIF Raw':'OTIF'} <b>${P(ot/po)}</b></span>`});
+  $('#dlSum').innerHTML=by.join('');
+  const kb=Math.max(1,Math.round(rows.length*(cols.reduce((a,c)=>a+(c.n?9:14),0)+2)/1024));
+  $('#dlInfo').textContent=`${N(rows.length)} rows × ${cols.length} columns · about ${kb>1024?(kb/1024).toFixed(1)+' MB':kb+' KB'}`;
+  $('#dlGo').disabled=!rows.length||!cols.length;
+  const show=v=>typeof v==='number'?v.toLocaleString('en-US',{maximumFractionDigits:2}):esc(v);
+  $('#dlPrev').innerHTML=!cols.length?'<p class="mute">Tick at least one column.</p>':!rows.length?'<p class="mute">No POs for this selection. Try a wider date range or more DCs.</p>':
+    `<div class="tw" style="max-height:420px"><table><thead><tr>${cols.map(c=>`<th class="${c.n?'num':''}">${esc(c.h)}</th>`).join('')}</tr></thead><tbody>${rows.slice(0,20).map(r=>`<tr>${cols.map(c=>`<td class="${c.n?'num':''}">${show(c.v(r))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+function dlDownload(){const rows=dlRows(),cols=dlCols();if(!rows.length||!cols.length)return;
+  const cell=v=>{if(v==null)return'';let s=String(v);if(typeof v==='string'&&/^[=+\-@\t\r]/.test(s))s="'"+s;return/[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s};   // quote + guard against spreadsheet formulas
+  const lines=[cols.map(c=>cell(c.h)).join(',')];for(const r of rows)lines.push(cols.map(c=>cell(c.v(r))).join(','));
+  const blob=new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=`DC-Mid-Mile_${DL.type==='sto'?'Store-PO':'Supplier-PO'}_${DL.div==='ALL'?'Dry-FF':DIV[DL.div].n}_${S.from}_to_${S.to}.csv`;
+  document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)}
 
 /* ---------- lookup tables ---------- */
 const SUPCOLS=()=>[{k:'name',h:'Supplier',f:r=>`<b>${esc(r.name)}</b>`},{k:'dcs',h:'DC',f:r=>r.dcs},{k:'poN',h:'POs',num:1,f:r=>N(r.poN)},{k:'miss',h:'Missed qty',num:1,sv:r=>r.poQ-r.otQ,f:(r,v)=>`<b>${fv(r.poQ-r.otQ,v)}</b>`},...supMetricCols(),
@@ -845,8 +1134,8 @@ function openDrawer(html){const d=$('#drawer');DT=document.activeElement;d.inner
 function closeDrawer(){const d=$('#drawer');if(!d.classList.contains('open'))return;d.classList.remove('open');d.setAttribute('aria-hidden','true');if(DT&&document.contains(DT))DT.focus({preventScroll:true});DT=null}
 
 /* ---------- header / slicers ---------- */
-$('#sReg').innerHTML='<option value="ALL">All</option>'+D.regions.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');
-$('#sGrd').innerHTML='<option value="ALL">All</option>'+D.grades.map(g=>`<option>${g}</option>`).join('');
+$('#sReg').innerHTML='<option value="ALL">All</option>'+D.regions.map(r=>`<option value="${esc(r.id)}">${esc(r.name)}</option>`).join('');
+$('#sGrd').innerHTML='<option value="ALL">All</option>'+D.grades.map(g=>`<option>${esc(g)}</option>`).join('');
 ['#fFrom','#fTo'].forEach(id=>{$(id).min=START;$(id).max=LAST});
 $('#fDcs').innerHTML=`<button class="dcc on" data-dcall title="Select all DCs">All</button>`+DIVS.map(v=>`<span class="dcg">${tag(v)}${dcOf(v).map(d=>`<button class="dcc ${DIV[v].cls}" data-dc="${d.id}" aria-pressed="true" title="${dcN(d.id)}">${esc(d.name)}</button>`).join('')}</span>`).join('');
 $('#navFootT').innerHTML=`Data as of <b>${dL(LAST)}</b><br>${D.meta.source==='sample'?'Sample data · mockup':'Source: '+esc(D.meta.source)}`;
@@ -855,12 +1144,16 @@ const PREN={l7:'Last 7 days',l30:'Last 30 days',tw:'This week',lw:'Last week',mt
 const isDefault=()=>S.pre===DEF.pre&&S.gran===DEF.gran&&S.ffu===DEF.ffu&&S.reg==='ALL'&&S.grd==='ALL'&&S.dcs.size===DCS.length;
 function filterSummary(){const it=[],add=(t,d)=>it.push(d?t:`<b>${t}</b>`),len=nDays(S.from,S.to);
   add(`${PREN[S.pre]}: ${dS(S.from)} – ${dL(S.to)} (${len} d${S.to===LAST?', incl. latest':''})`,S.pre===DEF.pre);
-  add('Trend by '+S.gran,S.gran===DEF.gran);
+  if(VIEW!=='dl')add('Trend by '+S.gran,S.gran===DEF.gran);
   add(S.dcs.size===DCS.length?`All DCs (Dry ${dcOf('D').length} · FF ${dcOf('F').length})`:'DCs: '+([...S.dcs].map(dcN).join(', ')||'none selected'),S.dcs.size===DCS.length);
   add('FF in '+(S.ffu==='kg'?'kg':'tons'),S.ffu===DEF.ffu);
   add('Region: '+(S.reg==='ALL'?'All':REGN[S.reg]),S.reg==='ALL');add('Grade: '+(S.grd==='ALL'?'All':S.grd),S.grd==='ALL');
   return'Showing: '+it.join(' · ')}
 function syncCtl(){
+  const dl=VIEW==='dl';
+  $('#pgSub').textContent=dl?'Download data':'Service Level (OTIF)';
+  $('#pgQ').textContent=dl?'Export PO-level detail (Store PO or Supplier PO) for any date range, with the columns you need, as a CSV file.':'Did suppliers deliver to the DC, and did the DC deliver to stores, on time and in full? How long did each leg take? Dry and Fresh Frozen are shown together, for every DC.';
+  $('#slGran').hidden=dl;
   $('#fPre').value=S.pre;$('#fFrom').value=S.from;$('#fTo').value=S.to;
   document.querySelectorAll('#fGran button').forEach(b=>{const on=b.dataset.g===S.gran;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
   document.querySelectorAll('#fUnit button').forEach(b=>{const on=b.dataset.u===S.ffu;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
@@ -868,18 +1161,23 @@ function syncCtl(){
   $('#fDcs [data-dcall]').classList.toggle('on',S.dcs.size===DCS.length);
   $('#sReg').value=S.reg;$('#sGrd').value=S.grd;
   $('#fSum').innerHTML=filterSummary();$('#fReset').classList.toggle('idle',isDefault());
+  const nf=(S.pre!==DEF.pre)+(!dl&&S.gran!==DEF.gran)+(S.dcs.size!==DCS.length)+(S.ffu!==DEF.ffu)+(S.reg!=='ALL')+(S.grd!=='ALL');
+  $('#ftgN').textContent=nf?String(nf):'';$('#ftg').title=nf?`${nf} filter${nf>1?'s':''} changed from default`:'All filters at default';
   const len=nDays(S.from,S.to),pa=addDays(S.from,-len),pb=addDays(S.from,-1);
-  $('#sLeg').innerHTML=`<span>${tag('D')} Dry · cases</span><span>${tag('F')} Fresh Frozen · ${S.ffu==='kg'?'kg':'tons'}</span><span>${glyph('ok')} On target</span><span>${glyph('warn')} Near target</span><span>${glyph('bad')} Below target</span><span>▲▼ vs previous ${len} day${len>1?'s':''}${pa>=START?` (${dS(pa)} – ${dS(pb)})`:' — not available (before data start)'}</span><span>* = partial period</span><span>Targets are examples — <button class="lnk" data-jump="defs">see KPI definitions &rsaquo;</button></span>`;
+  $('#sLeg').innerHTML=`<span>${tag('D')} Dry · cases</span><span>${tag('F')} Fresh Frozen · ${S.ffu==='kg'?'kg':'tons'}</span>`+(dl?`<span>Region / Store grade apply to Store PO only</span>`:
+    `<span>${glyph('ok')} On target</span><span>${glyph('warn')} Near target</span><span>${glyph('bad')} Below target</span><span>▲▼ vs previous ${len} day${len>1?'s':''}${pa>=START?` (${dS(pa)} – ${dS(pb)})`:' — not available (before data start)'}</span><span>* = partial period</span><span>Targets are examples — <button class="lnk" data-jump="defs">see KPI definitions &rsaquo;</button></span>`);
 }
 
 /* ---------- section toggle · jump · scroll-spy ---------- */
 function toggleSec(s){if(!s)return;const c=!s.classList.contains('col');s.classList.toggle('col',c);if(c)SECC[s.id]=1;else delete SECC[s.id];saveSECC();
   const b=s.querySelector('.psx');b.setAttribute('aria-expanded',String(!c));b.title=(c?'Show':'Hide')+' this section';b.querySelector('span').textContent=c?'Show':'Hide';spy()}
-function jumpTo(id){const s=document.getElementById(id);if(!s)return;if(s.classList.contains('col'))toggleSec(s);if(isPhone())setNav(true);if(!document.body.classList.contains('scrolled')){document.body.classList.add('scrolled');fitHdr()}s.scrollIntoView({behavior:'smooth',block:'start'})}
-function spy(){const hb=$('#hdr').getBoundingClientRect().bottom+28;let a='top';
-  ['sec1','sec2','defs'].forEach(id=>{const s=document.getElementById(id);if(s&&s.getBoundingClientRect().top<=hb)a=id});
-  if(window.scrollY>0&&window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)a='defs';
-  document.querySelectorAll('.nav [data-jump]').forEach(b=>{const on=b.dataset.jump===a;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')})}
+function jumpTo(id){const s=document.getElementById(id);if(!s)return;if(s.classList.contains('col'))toggleSec(s);if(isPhone())openMob(false);if(!document.body.classList.contains('scrolled')){document.body.classList.add('scrolled');fitHdr()}s.scrollIntoView({behavior:'smooth',block:'start'})}
+function spy(){let a='top';
+  if(VIEW==='dl')a='view:dl';
+  else{const hb=Math.max($('#hdr').getBoundingClientRect().bottom,$('#mbar').getBoundingClientRect().bottom,0)+28;
+    ['sec1','sec2','defs'].forEach(id=>{const s=document.getElementById(id);if(s&&s.getBoundingClientRect().top<=hb)a=id});
+    if(window.scrollY>0&&window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)a='defs'}
+  document.querySelectorAll('.nav [data-jump],.nav [data-view]').forEach(b=>{const on=(b.dataset.view?'view:'+b.dataset.view:b.dataset.jump)===a;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')})}
 
 /* ---------- focus mode ---------- */
 let FK=null,FY=0,FT=null;
@@ -888,26 +1186,48 @@ function clearFocus(){FK=null;document.querySelectorAll('.card.focus').forEach(c
 function enterFocus(c){FY=window.scrollY;FT=document.activeElement;FK=fkOf(c);c.classList.add('focus');document.body.classList.add('hasfocus');$('#hdr').inert=true;const b=c.querySelector('.vback');if(b)b.focus()}
 function exitFocus(){const key=FK;clearFocus();window.scrollTo(0,FY);let t=FT&&document.contains(FT)?FT:null;if(!t){const c=[...document.querySelectorAll('#main .card')].find(x=>fkOf(x)===key);t=c&&c.querySelector('.vfx')}if(t)t.focus({preventScroll:true});FT=null}
 
-/* ---------- nav collapse · compact header ---------- */
-const NAVK='dcmm_nav_v1',isPhone=()=>window.innerWidth<=700;
+/* ---------- navigation: collapsible rail (desktop/tablet) · slide-in menu (phone portrait & landscape) ---------- */
+const NAVK='dcmm_nav_v1',MOBQ='(max-width:700px), (max-height:520px)';
+const MQ=window.matchMedia?window.matchMedia(MOBQ):null,isPhone=()=>MQ?MQ.matches:window.innerWidth<=700;
 function setNav(c){document.body.classList.toggle('navc',c);const b=$('#navTg');b.innerHTML=c?'&raquo;':'&laquo;';const l=c?'Expand navigation':'Collapse navigation';b.setAttribute('aria-label',l);b.title=l;b.setAttribute('aria-expanded',String(!c))}
+/* phone menu: while open, only the menu takes focus; when it closes, focus returns to the menu button */
+function openMob(o){const nav=$('#nav'),had=nav.contains(document.activeElement);document.body.classList.toggle('navopen',o);$('#mnav').setAttribute('aria-expanded',String(o));$('#scrim').hidden=!o;
+  $('#content').inert=o;$('#mbar').inert=o;nav.inert=isPhone()&&!o;
+  if(o){const f=$('#nav .ni.on')||$('#nav .ni');if(f)f.focus({preventScroll:true})}else if(had&&isPhone())$('#mnav').focus({preventScroll:true})}
 const navPref=()=>{try{const v=localStorage.getItem(NAVK);if(v==='1'||v==='0')return v==='1'}catch(e){}return null};
-function fitHdr(){const h=$('#hdr');document.documentElement.style.setProperty('--hdr',(getComputedStyle(h).position==='sticky'?h.offsetHeight:0)+'px')}
+function applyMode(){if(isPhone()){document.body.classList.remove('navc');openMob(false);const b=$('#navTg');b.innerHTML='&times;';b.setAttribute('aria-label','Close menu');b.title='Close menu';b.removeAttribute('aria-expanded')}
+  else{document.body.classList.remove('navopen');$('#scrim').hidden=true;$('#nav').inert=false;$('#content').inert=false;$('#mbar').inert=false;const p=navPref();setNav(p!==null?p:window.innerWidth<1100)}fitHdr()}
+function fitHdr(){const h=$('#hdr'),m=$('#mbar');const v=getComputedStyle(h).position==='sticky'?h.offsetHeight:getComputedStyle(m).display!=='none'?m.offsetHeight:0;document.documentElement.style.setProperty('--hdr',v+'px')}
+function goView(v,after){closeDrawer();if(FK)clearFocus();if(isPhone())openMob(false);if(VIEW!==v){setView(v);render();window.scrollTo(0,0)}if(after)requestAnimationFrame(after)}
 
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
   const fb=e.target.closest('[data-focus]');if(fb){const c=fb.closest('.card');if(c&&c.classList.contains('focus'))exitFocus();else if(c)enterFocus(c);return}
   const sx=e.target.closest('[data-sect]');if(sx){toggleSec(sx.closest('.psec'));return}
-  const jb=e.target.closest('[data-jump]');if(jb){closeDrawer();if(FK)clearFocus();const id=jb.dataset.jump;if(id==='top'){window.scrollTo({top:0,behavior:'smooth'});if(isPhone())setNav(true)}else jumpTo(id);return}
+  const vw=e.target.closest('[data-view]');if(vw){goView(vw.dataset.view);return}
+  const jb=e.target.closest('[data-jump]');if(jb){const id=jb.dataset.jump;goView('dash',()=>{if(id==='top')window.scrollTo({top:0,behavior:'smooth'});else jumpTo(id)});return}
   if(e.target.closest('#toTop')){window.scrollTo({top:0,behavior:'smooth'});return}
+  if(e.target.closest('#mnav')){openMob(!document.body.classList.contains('navopen'));return}
+  if(e.target.closest('#scrim')){openMob(false);return}
+  if(e.target.closest('#ftg')){const o=!document.body.classList.contains('fopen');document.body.classList.toggle('fopen',o);$('#ftg').setAttribute('aria-expanded',String(o));$('#ftgL').textContent=o?'Hide filters':'Filters';fitHdr();return}
+  if(e.target.closest('#mtop')){window.scrollTo({top:0,behavior:'smooth'});return}
   if(e.target.closest('[data-close]')){closeDrawer();return}
   const lv=e.target.closest('[data-ldiv] button');if(lv){const ns=lv.parentElement.dataset.ldiv;SQ[ns+'Div']=lv.dataset.v;lv.parentElement.querySelectorAll('button').forEach(b=>{const on=b===lv;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});(ns==='sup'?supOut:stoOut)();return}
   const dc=e.target.closest('[data-dc]');if(dc){const id=dc.dataset.dc;if(S.dcs.has(id))S.dcs.delete(id);else S.dcs.add(id);render();return}
   if(e.target.closest('[data-dcall]')){S.dcs=new Set(DCS.map(d=>d.id));render();return}
+  /* download page */
+  const dt=e.target.closest('[data-dlt]');if(dt){DL.type=dt.dataset.dlt;saveDL();render();return}
+  const dd=e.target.closest('[data-dldiv]');if(dd){DL.div=dd.dataset.dldiv;saveDL();dd.parentElement.querySelectorAll('button').forEach(b=>{const on=b===dd;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});dlOut();return}
+  const cs=e.target.closest('[data-colset]');if(cs){const t=DL.type,m=cs.dataset.colset;DL.cols[t]=new Set(m==='all'?DLCOLS[t].map(c=>c.k):m==='def'?DLCOLS[t].filter(c=>c.def).map(c=>c.k):[]);saveDL();document.querySelectorAll('[data-col]').forEach(x=>x.checked=DL.cols[t].has(x.dataset.col));dlOut();return}
+  if(e.target.closest('#dlGo')){dlDownload();return}
   const th=e.target.closest('th[data-sort]');if(th){const ns=th.dataset.ns,k=th.dataset.sort,s=SORT[ns];SORT[ns]=s.k===k?{k,d:-s.d}:{k,d:['name','code','regN','grd','dc','dcs'].includes(k)?1:-1};(ns==='sup'?supOut:stoOut)();const nt=document.querySelector(`th[data-ns="${ns}"][data-sort="${k}"]`);if(nt)nt.focus({preventScroll:true});return}
   const tr=e.target.closest('tr[data-row]');if(tr){const ns=tr.dataset.ns,r=LASTROWS[ns][+tr.dataset.row];if(r)openDrawer(ns==='sup'?supDrawer(r):stoDrawer(r));return}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#drawer').classList.contains('open'))closeDrawer();else if(FK)exitFocus();else if(isPhone()&&!document.body.classList.contains('navc'))setNav(true)}
+document.addEventListener('change',e=>{
+  const cb=e.target.closest('[data-col]');if(cb){const s=DL.cols[DL.type];if(cb.checked)s.add(cb.dataset.col);else s.delete(cb.dataset.col);saveDL();dlOut();return}
+  if(e.target.id==='dlFrom'||e.target.id==='dlTo'){$('#fFrom').value=$('#dlFrom').value;$('#fTo').value=$('#dlTo').value;setDates()}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#drawer').classList.contains('open'))closeDrawer();else if(FK)exitFocus();else if(isPhone()&&document.body.classList.contains('navopen')){openMob(false);$('#mnav').focus()}}
   if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('tr[data-row],th[data-sort]')){e.preventDefault();e.target.click()}});
 $('#fPre').onchange=e=>{S.pre=e.target.value;if(S.pre!=='custom')[S.from,S.to]=preset(S.pre);render()};
 const setDates=()=>{let a=$('#fFrom').value||S.from,b=$('#fTo').value||S.to;if(a<START)a=START;if(b>LAST)b=LAST;if(a>LAST)a=LAST;if(b<START)b=START;if(a>b)[a,b]=[b,a];S.from=a;S.to=b;S.pre='custom';render()};
@@ -916,12 +1236,15 @@ document.querySelectorAll('#fGran button').forEach(b=>b.onclick=()=>{S.gran=b.da
 document.querySelectorAll('#fUnit button').forEach(b=>b.onclick=()=>{S.ffu=b.dataset.u;render()});
 $('#sReg').onchange=e=>{S.reg=e.target.value;render()};$('#sGrd').onchange=e=>{S.grd=e.target.value;render()};
 $('#fReset').onclick=()=>{Object.assign(S,DEF);S.dcs=new Set(DCS.map(d=>d.id));[S.from,S.to]=preset(S.pre);render()};
-$('#navTg').onclick=()=>{const c=!document.body.classList.contains('navc');setNav(c);if(!isPhone())try{localStorage.setItem(NAVK,c?'1':'0')}catch(e){}};
-{const p=navPref();setNav(isPhone()?true:p!==null?p:window.innerWidth<1100)}
-if(window.matchMedia){const mq=window.matchMedia('(max-width:1099px)');const f=e=>{if(isPhone())setNav(true);else if(navPref()===null)setNav(e.matches)};mq.addEventListener?mq.addEventListener('change',f):mq.addListener(f)}
+$('#navTg').onclick=()=>{if(isPhone()){openMob(false);$('#mnav').focus();return}const c=!document.body.classList.contains('navc');setNav(c);try{localStorage.setItem(NAVK,c?'1':'0')}catch(e){}};
+applyMode();
+if(MQ){const f=()=>applyMode();MQ.addEventListener?MQ.addEventListener('change',f):MQ.addListener(f)}
+if(window.matchMedia){const mq=window.matchMedia('(max-width:1099px)');const f=e=>{if(!isPhone()&&navPref()===null)setNav(e.matches)};mq.addEventListener?mq.addEventListener('change',f):mq.addListener(f)}
+window.addEventListener('hashchange',()=>{const v=location.hash==='#download'?'dl':'dash';if(v!==VIEW){VIEW=v;render()}});
 new MutationObserver(()=>{if(!FK||document.querySelector('.card.focus'))return;const c=[...document.querySelectorAll('#main .card')].find(x=>fkOf(x)===FK);if(c)c.classList.add('focus');else clearFocus()}).observe(document.getElementById('main'),{childList:true,subtree:true});
 window.addEventListener('scroll',()=>{const y=window.scrollY,b=document.body,on=b.classList.contains('scrolled');if(!on&&y>90){b.classList.add('scrolled');fitHdr()}else if(on&&y<12){b.classList.remove('scrolled');fitHdr()}spy()},{passive:true});
 window.addEventListener('resize',fitHdr);
+window.addEventListener('orientationchange',()=>setTimeout(()=>{applyMode();fitHdr()},250));
 render();setTimeout(fitHdr,300);
 })();
 
