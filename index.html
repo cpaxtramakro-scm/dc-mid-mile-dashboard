@@ -7,7 +7,7 @@
 <meta name="description" content="DC Mid Mile Dashboard - Service Level (OTIF), Dry and Fresh Frozen, all DCs.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23306FC7'/%3E%3Crect x='6' y='17' width='9' height='9' rx='1.5' fill='%23F6C24A'/%3E%3Crect x='17' y='9' width='9' height='17' rx='1.5' fill='%23FFFFFF'/%3E%3C/svg%3E">
-<!-- built 2026-10-26 10:06 · data: sample · do not edit by hand, run scripts/build_dashboard.py -->
+<!-- built 2026-10-26 14:19 · data: sample · do not edit by hand, run scripts/build_dashboard.py -->
 <style>
 /* =====================================================================
    DC Mid Mile Dashboard · MASTER THEME (single source of truth)
@@ -306,6 +306,47 @@ tr.gs td{background:var(--soft);font-weight:700}
 .fline{display:block;width:calc(100% - 18px);height:3px;border-radius:2px;background:var(--mute);position:relative;justify-self:center;opacity:.6}
 .fline::after{content:'';position:absolute;right:-9px;top:-5px;border-left:10px solid var(--mute);border-top:6.5px solid transparent;border-bottom:6.5px solid transparent}
 
+/* ---- end-to-end flow: headline per leg & division ---- */
+.hl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 8px;align-items:center;padding:6px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line)}
+.hl.dry{border-left-color:var(--dry)} .hl.ff{border-left-color:var(--ff)}
+.hl .dtag{grid-row:span 2}
+.hlv{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0}
+.hlv b{font-size:22px;line-height:1.15;font-variant-numeric:tabular-nums}
+.hlv span:last-child{font-size:12px;color:var(--mute)}
+.hls{grid-column:2;font-size:12px;color:var(--mute);overflow-wrap:anywhere}
+
+/* ---- end-to-end flow · one landscape row per DC ---- */
+.dcr{--nw:84px;display:grid;grid-template-columns:64px var(--nw) minmax(0,1fr) var(--nw) minmax(0,1fr) var(--nw);align-items:center;gap:6px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.dcblk .dcr:last-child{border-bottom:0}
+.dchd{border-bottom:0;padding:0 0 2px;font-size:12px;font-weight:700;text-align:center;color:var(--ink)}
+.dchd small{font-weight:400;color:var(--mute)}
+.dcblk{margin-top:8px}
+.dcblk+.dcblk{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.dcn{font-size:14px;padding-left:8px;border-left:4px solid var(--line);line-height:1.6}
+.dcn.dry{border-left-color:var(--dry)} .dcn.ff{border-left-color:var(--ff)}
+.dcnode{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;color:var(--mute);background:var(--soft);border-radius:8px;padding:5px 6px;min-width:0}
+.dcnode svg{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:var(--ink);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.dca{display:grid;justify-items:center;gap:3px;min-width:0}
+.dck{display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;font-size:13px}
+.dck b{font-variant-numeric:tabular-nums}
+.dck small{color:var(--mute);font-size:12px}
+.dcl{--c:var(--mute);display:block;width:calc(100% - 10px);height:3px;border-radius:2px;background:var(--c);position:relative;margin-right:10px}
+.dcl::after{content:'';position:absolute;right:-9px;top:-4.5px;border-left:10px solid var(--c);border-top:6px solid transparent;border-bottom:6px solid transparent}
+.dcl.ok{--c:var(--good)} .dcl.warn{--c:var(--warn)} .dcl.bad{--c:var(--bad)}
+
+/* ---- workflow page ---- */
+.wfrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px;align-items:stretch}
+.wfa{display:none}
+.wfs{border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:10px;padding:10px 12px;background:var(--card);min-width:0;display:grid;gap:6px;align-content:start}
+.wfh{display:flex;align-items:center;gap:8px}
+.wfn{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--card);display:grid;place-items:center;font-weight:700;font-size:13px}
+.wfh b{font-size:14px}
+.wff{font-size:12px;color:var(--ink);background:var(--soft);border-radius:6px;padding:4px 8px}
+.wfd{display:grid;grid-template-columns:1fr;gap:1px;margin:0;font-size:12px}
+.wfd dt{color:var(--mute);margin-top:4px}
+.wfd dd{margin:0}
+.tbc{color:var(--mute);font-style:italic}
+
 /* ---- mini flow per DC ---- */
 .mfg+.mfg{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
 .mfgh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;margin-bottom:8px}
@@ -423,6 +464,15 @@ tr.gs td{background:var(--soft);font-weight:700}
   .dlf .seg button{flex:1 1 auto}
   .dlf .drng input{flex:1 1 0;min-width:0}
   .dlgi{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));column-gap:10px}
+  .dcr{--nw:28px;grid-template-columns:52px var(--nw) minmax(0,1fr) var(--nw) minmax(0,1fr) var(--nw);gap:4px}
+  .dcnode{padding:4px 0;background:none}
+  .dcnode span{display:none}
+  .dcn{font-size:13px;padding-left:6px}
+  .dck{font-size:12px;gap:2px 3px}
+  .dck small{flex-basis:100%;text-align:center;font-size:11px}
+  .dck .stg{width:14px;height:14px;font-size:9px}
+  .dchd{font-size:11px}
+  .hlv b{font-size:20px}
 }
 /* phone landscape: keep the page title short so content starts sooner */
 @media (max-height:520px){
@@ -451,6 +501,8 @@ tr.gs td{background:var(--soft);font-weight:700}
     <button class="ni on" data-jump="top" title="End-to-end flow" aria-label="End-to-end flow" aria-current="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/><path d="M7.5 12h9"/><path d="M13.5 9l3 3-3 3"/></svg><span>End-to-end flow</span></button>
     <button class="ni" data-jump="sec1" title="1 · Supplier → DC" aria-label="1 · Supplier → DC"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M8 10l4 4 4-4"/><path d="M4 14v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg><span>1 · Supplier → DC</span></button>
     <button class="ni" data-jump="sec2" title="2 · DC → Store" aria-label="2 · DC → Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span>2 · DC → Store</span></button>
+    <div class="nav-sec" role="presentation">Process</div>
+    <button class="ni" data-view="wf" title="Workflow" aria-label="Workflow"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M9 6.5h6M18 9v3H12v3"/></svg><span>Workflow</span></button>
     <div class="nav-sec" role="presentation">Data</div>
     <button class="ni" data-view="dl" title="Download data" aria-label="Download data"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19h14"/></svg><span>Download data</span></button>
     <div class="nav-sec" role="presentation">Reference</div>
@@ -461,7 +513,7 @@ tr.gs td{background:var(--soft);font-weight:700}
 <div class="content" id="content">
   <header class="rhd" id="hdr">
     <div class="rhd1">
-      <div class="ptl"><h1>DC Mid Mile Dashboard<small id="pgSub">Service Level (OTIF)</small></h1><p id="pgQ">Did suppliers deliver to the DC, and did the DC deliver to stores, on time and in full? How long did each leg take? Dry and Fresh Frozen are shown together, for every DC.</p></div>
+      <div class="ptl"><h1>DC Mid Mile Dashboard<small id="pgSub">Service Level (OTIF)</small></h1></div>
       <div class="fsum" id="fSum" aria-live="polite"></div>
     </div>
     <div class="ftgw"><button class="btn ftg" id="ftg" aria-expanded="false" aria-controls="rhd2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span id="ftgL">Filters</span><b id="ftgN"></b></button></div>
@@ -475,7 +527,7 @@ tr.gs td{background:var(--soft);font-weight:700}
           <span class="dpair"><input type="date" id="fFrom" aria-label="From date"><span>to</span><input type="date" id="fTo" aria-label="To date"></span>
         </div>
       </div>
-      <div class="slc" id="slGran"><span class="slh">Trend by</span><div class="seg" id="fGran" role="group" aria-label="Trend grain"><button data-g="day">Day</button><button data-g="week">Week</button><button data-g="month">Month</button></div></div>
+      <div class="slc" id="slGran"><span class="slh">Lead-time trend by</span><div class="seg" id="fGran" role="group" aria-label="Lead-time trend grain"><button data-g="day">Day</button><button data-g="week">Week</button><button data-g="month">Month</button></div></div>
       <div class="slc slc-dc"><span class="slh">DCs</span><div class="dcchips" id="fDcs"></div></div>
       <div class="slc"><span class="slh">FF unit</span><div class="seg" id="fUnit" role="group" aria-label="Fresh Frozen unit"><button data-u="kg">kg</button><button data-u="ton">ton</button></div></div>
       <label class="slc"><span class="slh">Region <span class="mute">(DC → Store)</span></span><select id="sReg"></select></label>
@@ -784,8 +836,8 @@ function buckets(a,b){BK={};const m=new Map();for(let d=a;d<=b;d=addDays(d,1)){c
   return[...m.entries()].map(([k,nd])=>({k,nd,partial:nd<(S.gran==='day'?1:S.gran==='week'?7:monthLen(k))}))}
 const lab=b=>(S.gran==='day'?dS(b.k):S.gran==='week'?'W'+isoWeek(b.k):MON[+b.k.slice(5,7)])+(b.partial?'*':'');
 const labFull=b=>(S.gran==='day'?`${b.k} (${DN[dow(b.k)]})`:S.gran==='week'?`W${isoWeek(b.k)} · ${dS(b.k)} – ${dS(addDays(b.k,6))}`:`${MON[+b.k.slice(5,7)]} ${b.k.slice(0,4)}`)+(b.partial?` · ${b.nd} day${b.nd>1?'s':''} in range`:'');
-function agg(rows,bks,keys){const m=new Map(bks.map(b=>{const o={k:b.k};keys.forEach(x=>o[x]=0);return[b.k,o]}));
-  for(const r of rows){const o=m.get(BK[r.d]);if(!o)continue;for(const k of keys)o[k]+=r[k]}return bks.map(b=>m.get(b.k))}
+function agg(rows,bks,keys,kf){const m=new Map(bks.map(b=>{const o={k:b.k};keys.forEach(x=>o[x]=0);return[b.k,o]}));
+  for(const r of rows){const o=m.get(kf?kf(r):BK[r.d]);if(!o)continue;for(const k of keys)o[k]+=r[k]}return bks.map(b=>m.get(b.k))}
 function sumOf(rows,keys,idk){const o={_n:new Set()};keys.forEach(k=>o[k]=0);for(const r of rows){for(const k of keys)o[k]+=r[k];o._n.add(r[idk])}return o}
 function grp(rows,key,keys,idk){const m=new Map();for(const r of rows){const kk=r[key];let o=m.get(kk);if(!o){o={key:kk,_n:new Set()};keys.forEach(k=>o[k]=0);m.set(kk,o)}for(const k of keys)o[k]+=r[k];o._n.add(r[idk])}return[...m.values()]}
 const fSup=(a,b)=>SUPR.filter(r=>r.d>=a&&r.d<=b&&S.dcs.has(r.dc));
@@ -849,50 +901,49 @@ const ic=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>`;
 
 /* ================= render ================= */
 let CTX={};
-let VIEW=(()=>{try{return location.hash==='#download'?'dl':'dash'}catch(e){return'dash'}})();
-function setView(v){VIEW=v;try{history.replaceState(null,'',v==='dl'?'#download':location.pathname+location.search)}catch(e){}}
+const VHASH={dl:'#download',wf:'#workflow'},viewOfHash=h=>h==='#download'?'dl':h==='#workflow'?'wf':'dash';
+let VIEW=(()=>{try{return viewOfHash(location.hash)}catch(e){return'dash'}})();
+function setView(v){VIEW=v;try{history.replaceState(null,'',VHASH[v]||location.pathname+location.search)}catch(e){}}
 function render(){
   DCChart.reset();clearFocus();closeDrawer();syncCtl();
   if(VIEW==='dl'){renderDL();spy();fitHdr();return}
+  if(VIEW==='wf'){renderWF();spy();fitHdr();return}
   const len=nDays(S.from,S.to),pa=addDays(S.from,-len),pb=addDays(S.from,-1);
   PREV={len,a:pa,b:pb,ok:pa>=START};
   const sl=fSup(S.from,S.to),tl=fSto(S.from,S.to),slp=PREV.ok?fSup(pa,pb):[],tlp=PREV.ok?fSto(pa,pb):[];
   const bks=buckets(S.from,S.to),L=bks.map(lab),FL=bks.map(labFull),rangeLab=`${dL(S.from)} – ${dL(S.to)} (${len} day${len>1?'s':''})`;
+  /* service-level trends are always daily; lead-time trends follow the "Lead-time trend by" toggle */
+  const dbks=[];for(let d=S.from;d<=S.to;d=addDays(d,1))dbks.push({k:d,nd:1,partial:false});
+  const Ld=dbks.map(b=>dS(b.k)),FLd=dbks.map(b=>`${b.k} (${DN[dow(b.k)]})`),byDay=r=>r.d;
   const by={};
   DIVS.forEach(v=>{const s=sl.filter(r=>r.div===v),t=tl.filter(r=>r.div===v);
     const sb=sumOf(s,SUPK,'sup'),tb=sumOf(t,STK,'store');
     by[v]={s,t,sb,tb,sm:SM(sb),tm:TM(tb),sm0:PREV.ok?SM(sumOf(slp.filter(r=>r.div===v),SUPK,'sup')):null,tm0:PREV.ok?TM(sumOf(tlp.filter(r=>r.div===v),STK,'store')):null,
-      sa:agg(s,bks,SUPK).map(SM),ta:agg(t,bks,STK).map(TM),dcl:dcOf(v).filter(d=>S.dcs.has(d.id))}});
+      sa:agg(s,bks,SUPK).map(SM),ta:agg(t,bks,STK).map(TM),sd:agg(s,dbks,SUPK,byDay).map(SM),td:agg(t,dbks,STK,byDay).map(TM),dcl:dcOf(v).filter(d=>S.dcs.has(d.id))}});
   CTX={sl,tl,rangeLab,bks,by};
   /* lookup tables follow a division that still has a DC selected */
   ['sup','sto'].forEach(ns=>{const k=ns+'Div';if(!by[SQ[k]].dcl.length){const alt=DIVS.find(v=>by[v].dcl.length);if(alt)SQ[k]=alt}});
 
-  /* ---- end-to-end flow ---- */
-  const chip=(lbl,k,v)=>`<span class="fchip">${glyph(st(k,v))}${lbl} <b>${fk(k,v)}</b></span>`;
-  const flowRow=(v,html)=>`<span class="frow">${tag(v)}${html}</span>`;
+  /* ---- end-to-end flow: one big "on time & in full" number per leg and division, plain sub-line ---- */
+  const hl=(v,k,val,what,sub)=>`<div class="hl ${DIV[v].cls}">${tag(v)}<div class="hlv">${glyph(st(k,val))}<b>${fk(k,val)}</b><span>${what}</span></div><div class="hls">${sub}</div></div>`;
   const e2e=card('End-to-end flow',`
    <div class="flowc">
     <div class="fnode">${ic('sup')}<b>Supplier</b>${DIVS.map(v=>`<span>${DIV[v].n}: ${N(by[v].sb._n.size)} suppliers · ${N(by[v].sb.poN)} POs</span>`).join('')}</div>
-    <button class="farr" data-jump="sec1" title="Go to section 1"><span class="fl1">1 · Supplier → DC</span>${DIVS.map(v=>{const m=by[v].sm;return flowRow(v,chip('OTIF','supOtif',m.otif)+chip('OT','supOt',m.ot)+chip('IF','supIf',m.if)+chip('LT','supLt',m.lt))}).join('')}<span class="fline"></span></button>
+    <button class="farr" data-jump="sec1" title="Details: 1 · Supplier → DC"><span class="fl1">① Supplier delivers to DC</span>${DIVS.map(v=>{const m=by[v].sm;return hl(v,'supOtif',m.otif,'on time &amp; in full',`On time ${P(m.ot)} · In full ${P(m.if)} · PO → receipt ${F1(m.lt)} days`)}).join('')}<span class="fline"></span></button>
     <div class="fnode">${ic('dc')}<b>DC</b>${DIVS.map(v=>`<span>${DIV[v].n}: ${by[v].dcl.map(d=>d.name).join(' · ')||'none selected'}</span>`).join('')}</div>
-    <button class="farr" data-jump="sec2" title="Go to section 2"><span class="fl1">2 · DC → Store</span>${DIVS.map(v=>{const m=by[v].tm;return flowRow(v,chip('OTIF Raw','otifR',m.otifR)+chip('OTIF Adj.','otifA',m.otifA)+chip('LT','lt',m.lt)+chip('Transit','tr',m.tr))}).join('')}<span class="fline"></span></button>
+    <button class="farr" data-jump="sec2" title="Details: 2 · DC → Store"><span class="fl1">② DC delivers to store</span>${DIVS.map(v=>{const m=by[v].tm;return hl(v,'otifA',m.otifA,'on time &amp; in full (adjusted)',`Raw ${P(m.otifR)} · Store PO → store ${F1(m.lt)} h · Transit ${F1(m.tr)} h`)}).join('')}<span class="fline"></span></button>
     <div class="fnode">${ic('store')}<b>Store</b>${DIVS.map(v=>`<span>${DIV[v].n}: ${N(by[v].tb._n.size)} stores</span>`).join('')}${S.reg!=='ALL'||S.grd!=='ALL'?'<span>(filtered)</span>':''}</div>
    </div>
-   <div class="note"><b>How to read</b> — Each arrow has a <b>Dry</b> row (yellow) and an <b>FF</b> row (blue). ✓ / ! / ✕ show status against target. Section 1 is the supplier’s delivery into the DC. Section 2 is the DC + middle-mile delivery to stores: <b>Raw</b> compares with the store PO (a supplier shortfall also pulls it down); <b>Adjusted</b> compares with what the DC received for that store PO. Supplier lead time is in days, store lead time in hours. Click an arrow to jump to that section.</div>`,{sub:`${rangeLab} · Dry in cases · FF in ${U('F')}`});
+   <div class="note"><b>How to read</b> — Left to right: ① did suppliers deliver our PO quantity to the DC on time and in full, and ② did the DC deliver the store orders on time and in full? The big number is the share of quantity that arrived on time and in full: ✓ on target · ! close to target · ✕ below target. For ②, <b>adjusted</b> only counts what the DC actually received, so a supplier shortfall is not counted against the DC; <b>Raw</b> counts against the original store order. Tap an arrow for the details.</div>`,{sub:`${rangeLab} · Dry (yellow) in cases · FF (blue) in ${U('F')}`});
 
-  /* ---- end-to-end flow · one mini flow per DC ---- */
-  const mchip=(lbl,k,v)=>`<span class="mchip">${glyph(st(k,v))}${lbl} <b>${fk(k,v)}</b></span>`;
-  const miniFlow=dc=>{const v=dc.div,s=sumOf(by[v].s.filter(r=>r.dc===dc.id),SUPK,'sup'),t=sumOf(by[v].t.filter(r=>r.dc===dc.id),STK,'store'),m=SM(s),n=TM(t);
-    return`<article class="mf ${DIV[v].cls}" aria-label="${DIV[v].full} ${esc(dc.name)} end-to-end flow">
-     <div class="mfh">${tag(v)}<b>${esc(dc.name)}</b><span class="sub">${DIV[v].full}</span></div>
-     <div class="mfn">${ic('sup')}<span><b>Supplier</b> · ${N(s._n.size)} suppliers · ${N(s.poN)} POs</span></div>
-     <div class="mfa"><span class="mfl">1 · Supplier → DC</span><span class="mfc">${mchip('OTIF','supOtif',m.otif)}${mchip('OT','supOt',m.ot)}${mchip('IF','supIf',m.if)}${mchip('LT','supLt',m.lt)}</span></div>
-     <div class="mfn">${ic('dc')}<span><b>DC ${esc(dc.name)}</b> · received ${fv(s.rcvQ,v)} ${U(v)}</span></div>
-     <div class="mfa"><span class="mfl">2 · DC → Store</span><span class="mfc">${mchip('OTIF Raw','otifR',n.otifR)}${mchip('OTIF Adj.','otifA',n.otifA)}${mchip('LT','lt',n.lt)}${mchip('Transit','tr',n.tr)}</span></div>
-     <div class="mfn">${ic('store')}<span><b>Store</b> · ${N(t._n.size)} stores · on time ${fv(t.otQ,v)} ${U(v)}</span></div>
-    </article>`};
-  const e2eDc=card('End-to-end flow · by DC',DIVS.map(v=>`<div class="mfg"><div class="mfgh">${tag(v)} <b>${DIV[v].full} DCs</b> <span class="mute">· quantities in ${U(v)}</span></div>${by[v].dcl.length?`<div class="mfgrid">${by[v].dcl.map(miniFlow).join('')}</div>`:`<p class="mute" style="margin:4px 0 0">No ${DIV[v].full} DC selected — use the DC chips at the top.</p>`}</div>`).join(''),
-    {sub:`${rangeLab} · one flow per DC · ✓ on target · ! near · ✕ below · Region / Store grade filters apply to the DC → Store leg`});
+  /* ---- end-to-end flow · one landscape row per DC (OTIF + lead time per leg) ---- */
+  const legK=(k,val,lt,u)=>{const s=st(k,val);return`<span class="dca"><span class="dck">${glyph(s)}<b>${fk(k,val)}</b><small>${isFinite(lt)?F1(lt)+' '+u:'no data'}</small></span><i class="dcl ${s}"></i></span>`};
+  const node=(i,l)=>`<span class="dcnode">${ic(i)}<span>${l}</span></span>`;
+  const dcRow=dc=>{const v=dc.div,s=sumOf(by[v].s.filter(r=>r.dc===dc.id),SUPK,'sup'),t=sumOf(by[v].t.filter(r=>r.dc===dc.id),STK,'store'),m=SM(s),n=TM(t);
+    return`<div class="dcr" title="${esc(`${DIV[v].full} ${dc.name} · ${N(s._n.size)} suppliers · ${N(s.poN)} POs · ${N(t._n.size)} stores`)}"><b class="dcn ${DIV[v].cls}">${esc(dc.name)}</b>${node('sup','Supplier')}${legK('supOtif',m.otif,m.lt,'d')}${node('dc','DC')}${legK('otifA',n.otifA,n.lt,'h')}${node('store','Store')}</div>`};
+  const e2eDc=card('End-to-end flow · by DC',`<div class="dcr dchd" aria-hidden="true"><span></span><span></span><span>① Supplier → DC<br><small>OTIF · lead time</small></span><span></span><span>② DC → Store<br><small>OTIF adj. · lead time</small></span><span></span></div>`+
+    DIVS.map(v=>`<div class="dcblk"><div class="mfgh">${tag(v)} <b>${DIV[v].full} DCs</b></div>${by[v].dcl.length?by[v].dcl.map(dcRow).join(''):`<p class="mute" style="margin:4px 0 0">No ${DIV[v].full} DC selected — use the DC chips at the top.</p>`}</div>`).join(''),
+    {sub:`${rangeLab} · arrow colour = OTIF status (✓ on target · ! near · ✕ below)`});
 
   /* ---- section 1 · Supplier → DC ---- */
   const pp={pp:true};
@@ -904,21 +955,16 @@ function render(){
     kp2({l:'Lead time · PO issued → received at DC',tg:`target ≤ ${T('supLt')} d`,rows:Object.fromEntries(DIVS.map(v=>{const m=by[v].sm;return[v,rowS(v,'supLt',m.lt,by[v].sm0&&by[v].sm0.lt,`PO→Booking ${F1(m.seg[0])} · Booking→Appt ${F1(m.seg[1])} · Appt→Receipt ${F1(m.seg[2])}`,{abs:'d',hb:false},'days')]}))}),
     kp2({l:'Quantity issued from PO',rows:Object.fromEntries(DIVS.map(v=>{const b=by[v].sb;return[v,{v:fv(b.poQ,v),u:U(v),sub:`${N(b.poN)} POs · ${N(b._n.size)} suppliers`}]}))}),
     kp2({l:'Quantity received at DC',rows:Object.fromEntries(DIVS.map(v=>{const b=by[v].sb;return[v,{v:fv(b.rcvQ,v),u:U(v),sub:`Late POs ${N(b.lateN)} · short POs ${N(b.shortN)}`}]}))})].join('');
-  const whereDiv=v=>{const b=by[v].sb,late=b.rcvQ-b.otQ,short=b.poQ-b.rcvQ;
-    return`<div class="dvb"><div class="dvh">${tag(v)}<span class="mute" style="font-weight:400">PO qty ${fv(b.poQ,v)} ${U(v)} · OTIF = ${P(by[v].sm.ot)} OT × ${P(by[v].sm.if)} IF = ${P(by[v].sm.otif)}</span></div>${hbars([{l:'On time & in full',v:b.otQ,c:'var(--good)',x:P(b.otQ/b.poQ)},{l:'Received late',v:late,c:'color-mix(in srgb,var(--bad) 55%,var(--card))',x:P(late/b.poQ)},{l:'Short / not received',v:short,c:'var(--bad)',x:P(short/b.poQ)}],{fmt:x=>fv(x,v),max:b.poQ})}</div>`};
   const supDcCols=[{k:'name',h:'DC',f:r=>`<b>${r.name}</b>`},{k:'n',h:'Suppliers',num:1,f:r=>N(r._n.size)},...supMetricCols()];
   const supDcGroups=DIVS.map(v=>({div:v,rows:by[v].dcl.map(dc=>({name:dc.name,...sumOf(by[v].s.filter(r=>r.dc===dc.id),SUPK,'sup')})),tot:by[v].sb}));
   const segLeg3=legend3=>`<div class="legend"><span class="lg-h">Left bar = Dry · right bar = FF</span>${legend3.map((l,i)=>lgSq([DIV.D.t[[0,2,3][i]],DIV.F.t[[0,2,3][i]]],l)).join('')}${lgLine('var(--target)','Target',1)}</div>`;
   const s1=`
    <div class="grid gk">${s1k}</div>
    <div class="grid g2">
-    ${card('Supplier OTIF% trend','<div class="chart" id="c1"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry')}${lgLine(DIV.F.ln,'FF')}${lgLine('var(--target)','Target',1)}</div>`,{sub:'Dry vs FF · * = partial period (part of the bucket is outside the range or still in progress)'})}
-    ${card('Supplier OT% · IF% trend','<div class="chart" id="c2"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry OT')}${lgLine(DIV.D.ln,'Dry IF',1)}${lgLine(DIV.F.ln,'FF OT')}${lgLine(DIV.F.ln,'FF IF',1)}</div>`,{sub:'Solid = on time · dashed = in full — which one drives OTIF?'})}
+    ${card('Supplier OTIF% trend','<div class="chart" id="c1"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry')}${lgLine(DIV.F.ln,'FF')}${lgLine('var(--target)','Target',1)}</div>`,{sub:'Daily · Dry vs FF'})}
+    ${card('Supplier OT% · IF% trend','<div class="chart" id="c2"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry OT')}${lgLine(DIV.D.ln,'Dry IF',1)}${lgLine(DIV.F.ln,'FF OT')}${lgLine(DIV.F.ln,'FF IF',1)}</div>`,{sub:'Daily · solid = on time · dashed = in full — which one drives OTIF?'})}
    </div>
-   <div class="grid g2">
-    ${card('Where the PO quantity went',DIVS.map(whereDiv).join('')+`<div class="note">Late = received after the appointment date <i>(definition to confirm)</i>; short = not delivered in full.</div>`,{sub:rangeLab})}
-    ${card('Lead time · PO issued → received at DC','<div class="chart" id="c3"></div>'+segLeg3(['PO → Booking','Booking → Appointment','Appointment → Actual receipt']),{sub:'days · stacked segments'})}
-   </div>
+   ${card('Lead time · PO issued → received at DC','<div class="chart" id="c3"></div>'+segLeg3(['PO → Booking','Booking → Appointment','Appointment → Actual receipt']),{sub:`days · stacked segments · by ${S.gran} (change with “Lead-time trend by”) · * = partial period`})}
    ${card('Supplier → DC by DC',gtable(supDcCols,supDcGroups),{sub:`${rangeLab} · Dry and FF are totalled separately (different units)`})}
    ${card('Supplier ranking',`<div class="fb"><label>Search supplier<input type="search" id="supQ" placeholder="e.g. Siam, Dairy" value="${esc(SQ.sup)}"></label><span class="sub" id="supCnt"></span></div><div id="supTbl"></div>`,{sub:`${rangeLab} · biggest missed quantity first (PO qty − on-time qty) · click a header to sort, a row for detail`,tools:ldiv('sup')})}`;
 
@@ -943,12 +989,12 @@ function render(){
   const s2=`
    <div class="grid gk">${s2k}</div>
    <div class="grid g2">
-    ${card('OTIF% Raw vs Adjusted trend','<div class="chart" id="c4"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry Raw')}${lgLine(DIV.D.ln,'Dry Adjusted',1)}${lgLine(DIV.F.ln,'FF Raw')}${lgLine(DIV.F.ln,'FF Adjusted',1)}${lgLine('var(--target)','Adj. target',1)}</div>`,{sub:'The gap between Raw and Adjusted is the supplier shortfall'})}
-    ${card('OT% · IF% trend','<div class="chart" id="c5"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry OT')}${lgLine(DIV.D.ln,'Dry IF Raw',1)}${lgLine(DIV.F.ln,'FF OT')}${lgLine(DIV.F.ln,'FF IF Raw',1)}</div>`,{sub:'Solid = on time · dashed = in full'})}
+    ${card('OTIF% Raw vs Adjusted trend','<div class="chart" id="c4"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry Raw')}${lgLine(DIV.D.ln,'Dry Adjusted',1)}${lgLine(DIV.F.ln,'FF Raw')}${lgLine(DIV.F.ln,'FF Adjusted',1)}${lgLine('var(--target)','Adj. target',1)}</div>`,{sub:'Daily · the gap between Raw and Adjusted is the supplier shortfall'})}
+    ${card('OT% · IF% trend','<div class="chart" id="c5"></div>'+`<div class="legend">${lgLine(DIV.D.ln,'Dry OT')}${lgLine(DIV.D.ln,'Dry IF Raw',1)}${lgLine(DIV.F.ln,'FF OT')}${lgLine(DIV.F.ln,'FF IF Raw',1)}</div>`,{sub:'Daily · solid = on time · dashed = in full'})}
    </div>
    <div class="grid g2">
     ${card('Quantity flow · PO → DC → store → on time',DIVS.map(funDiv).join('')+`<div class="note"><b>Raw</b> uses the top bar (PO qty) as the denominator; <b>Adjusted</b> uses “Received at DC (for PO)”.</div>`,{sub:rangeLab})}
-    ${card('Lead time · store PO → received at store','<div class="chart" id="c6"></div>'+segLeg4,{sub:'hours · stacked segments'})}
+    ${card('Lead time · store PO → received at store','<div class="chart" id="c6"></div>'+segLeg4,{sub:`hours · stacked segments · by ${S.gran} (change with “Lead-time trend by”) · * = partial period`})}
    </div>
    ${card('DC → Store by DC',gtable(grpCols('DC'),dcGroups),{sub:`${rangeLab} · Dry and FF are totalled separately`})}
    <div class="grid g2">
@@ -963,7 +1009,7 @@ function render(){
   const defs=`
    ${card('1 · Supplier → DC',`<div class="tw free"><table>${dHead}<tbody>${TDEF.filter(x=>x.sec===1).map(dRow).join('')}</tbody></table></div>`)}
    ${card('2 · DC → Store',`<div class="tw free"><table>${dHead}<tbody>${TDEF.filter(x=>x.sec===2).map(dRow).join('')}</tbody></table></div>`)}
-   <div class="note"><b>Rules</b> — ① OTIF% = OT% × IF% on both legs. ② Raw = against the PO quantity; Adjusted = against the quantity received at the DC for that store PO, so a supplier shortfall is not counted against the DC + middle mile. ③ “On time” = received on or before the appointment date (supplier) / the promised store delivery date (store) — <i>to confirm</i>. ④ Lines count on the PO requested delivery date (supplier) / planned store delivery date (store). ⑤ Per PO line, received is capped at PO qty and on-time at received. ⑥ <b>Dry</b> is measured in cases (yellow), <b>Fresh Frozen</b> in kg, shown in kg or tons (blue). Dry and FF are always shown side by side and never added together. ⑦ Lead times are calendar-time averages weighted by received quantity. ⑧ The period is the selected date range, including the latest days (in progress). ▲ / ▼ compare with the same number of days just before the range. ⑨ Targets are examples, the same for Dry and FF for now. ⑩ Status: ✓ green = on target · ! orange = near target · ✕ red = below target.</div>`;
+   <div class="note"><b>Rules</b> — ① OTIF% = OT% × IF% on both legs. ② Raw = against the PO quantity; Adjusted = against the quantity received at the DC for that store PO, so a supplier shortfall is not counted against the DC + middle mile. ③ “On time” = received on or before the appointment date (supplier) / the promised store delivery date (store) — <i>to confirm</i>. ④ Lines count on the PO requested delivery date (supplier) / planned store delivery date (store). ⑤ Per PO line, received is capped at PO qty and on-time at received. ⑥ <b>Dry</b> is measured in cases (yellow), <b>Fresh Frozen</b> in kg, shown in kg or tons (blue). Dry and FF are always shown side by side and never added together. ⑦ Lead times are calendar-time averages weighted by received quantity. ⑧ The period is the selected date range, including the latest days (in progress). ▲ / ▼ compare with the same number of days just before the range. OTIF / OT / IF trends are always daily; lead-time trends follow “Lead-time trend by”. ⑨ Targets are examples, the same for Dry and FF for now. ⑩ Status: ✓ green = on target · ! orange = near target · ✕ red = below target.</div>`;
 
   $('#main').innerHTML=`${e2e}${e2eDc}
    ${sec('sec1','1','Supplier → DC','Did suppliers deliver the PO quantity to the DC on time and in full, and how long from PO issued to receipt?',s1)}
@@ -973,16 +1019,41 @@ function render(){
   /* ---- charts ---- */
   const pY=vals=>({...pctY(vals),fmt:pctFmt,tip:pctTip});
   const A=v=>by[v].sa,B=v=>by[v].ta;
-  DCChart.line($('#c1'),{labels:L,full:FL,aria:'Supplier OTIF trend',series:DIVS.map(v=>({label:`${DIV[v].n} OTIF`,data:A(v).map(x=>x.otif),color:DIV[v].ln,width:2.8})),targets:[{label:'OTIF target',value:T('supOtif')}],y:pY([...DIVS.flatMap(v=>A(v).map(x=>x.otif)),T('supOtif')])});
-  DCChart.line($('#c2'),{labels:L,full:FL,aria:'Supplier OT and IF trend',series:DIVS.flatMap(v=>[{label:`${DIV[v].n} OT`,data:A(v).map(x=>x.ot),color:DIV[v].ln},{label:`${DIV[v].n} IF`,data:A(v).map(x=>x.if),color:DIV[v].ln,dash:1}]),y:pY(DIVS.flatMap(v=>A(v).flatMap(x=>[x.ot,x.if])))});
+  const Ad=v=>by[v].sd,Bd=v=>by[v].td;
+  DCChart.line($('#c1'),{labels:Ld,full:FLd,aria:'Supplier OTIF daily trend',series:DIVS.map(v=>({label:`${DIV[v].n} OTIF`,data:Ad(v).map(x=>x.otif),color:DIV[v].ln,width:2.8})),targets:[{label:'OTIF target',value:T('supOtif')}],y:pY([...DIVS.flatMap(v=>Ad(v).map(x=>x.otif)),T('supOtif')])});
+  DCChart.line($('#c2'),{labels:Ld,full:FLd,aria:'Supplier OT and IF daily trend',series:DIVS.flatMap(v=>[{label:`${DIV[v].n} OT`,data:Ad(v).map(x=>x.ot),color:DIV[v].ln},{label:`${DIV[v].n} IF`,data:Ad(v).map(x=>x.if),color:DIV[v].ln,dash:1}]),y:pY(DIVS.flatMap(v=>Ad(v).flatMap(x=>[x.ot,x.if])))});
   const hF=u=>({fmt:v=>v+' '+u,tip:v=>F1(v)+' '+u});
   DCChart.stack($('#c3'),{labels:L,full:FL,aria:'Supplier lead time',groups:DIVS.map(v=>({label:DIV[v].full,segs:['PO → Booking','Booking → Appointment','Appointment → Receipt'].map((l,i)=>({label:l,data:A(v).map(x=>x.seg[i]),color:DIV[v].t[[0,2,3][i]]}))})),targets:[{label:'Target',value:T('supLt')}],y:hF('d')});
-  DCChart.line($('#c4'),{labels:L,full:FL,aria:'OTIF Raw vs Adjusted trend',series:DIVS.flatMap(v=>[{label:`${DIV[v].n} Raw`,data:B(v).map(x=>x.otifR),color:DIV[v].ln,width:2.8},{label:`${DIV[v].n} Adjusted`,data:B(v).map(x=>x.otifA),color:DIV[v].ln,dash:1}]),targets:[{label:'Adj. target',value:T('otifA')}],y:pY([...DIVS.flatMap(v=>B(v).flatMap(x=>[x.otifR,x.otifA])),T('otifA')])});
-  DCChart.line($('#c5'),{labels:L,full:FL,aria:'OT and IF trend',series:DIVS.flatMap(v=>[{label:`${DIV[v].n} OT`,data:B(v).map(x=>x.ot),color:DIV[v].ln},{label:`${DIV[v].n} IF Raw`,data:B(v).map(x=>x.ifR),color:DIV[v].ln,dash:1}]),y:pY(DIVS.flatMap(v=>B(v).flatMap(x=>[x.ot,x.ifR])))});
+  DCChart.line($('#c4'),{labels:Ld,full:FLd,aria:'OTIF Raw vs Adjusted daily trend',series:DIVS.flatMap(v=>[{label:`${DIV[v].n} Raw`,data:Bd(v).map(x=>x.otifR),color:DIV[v].ln,width:2.8},{label:`${DIV[v].n} Adjusted`,data:Bd(v).map(x=>x.otifA),color:DIV[v].ln,dash:1}]),targets:[{label:'Adj. target',value:T('otifA')}],y:pY([...DIVS.flatMap(v=>Bd(v).flatMap(x=>[x.otifR,x.otifA])),T('otifA')])});
+  DCChart.line($('#c5'),{labels:Ld,full:FLd,aria:'OT and IF daily trend',series:DIVS.flatMap(v=>[{label:`${DIV[v].n} OT`,data:Bd(v).map(x=>x.ot),color:DIV[v].ln},{label:`${DIV[v].n} IF Raw`,data:Bd(v).map(x=>x.ifR),color:DIV[v].ln,dash:1}]),y:pY(DIVS.flatMap(v=>Bd(v).flatMap(x=>[x.ot,x.ifR])))});
   DCChart.stack($('#c6'),{labels:L,full:FL,aria:'Store lead time',groups:DIVS.map(v=>({label:DIV[v].full,segs:['PO → DO','DO → Picking','Picking → Dispatch','Transit'].map((l,i)=>({label:l,data:B(v).map(x=>x.seg[i]),color:DIV[v].t[i]}))})),targets:[{label:'Target',value:T('lt')}],y:hF('h')});
 
   $('#supQ').oninput=e=>{SQ.sup=e.target.value;supOut()};$('#stoQ').oninput=e=>{SQ.sto=e.target.value;stoOut()};
   supOut();stoOut();spy();fitHdr();
+}
+
+/* ================= Workflow page (step content to be provided) =================
+   Fill a step by replacing the "tbc" values below: what, owner, system, ts (timestamp used), rule. */
+const WF=[
+ {leg:1,n:1,t:'PO issued',feeds:'Start of supplier lead time · PO → Booking',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:1,n:2,t:'Booking',feeds:'Booking → Appointment',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:1,n:3,t:'Appointment',feeds:'Supplier OT% (on-time check) · Appointment → Actual receipt',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:1,n:4,t:'Receipt at DC',feeds:'Supplier IF% · OTIF% · end of supplier lead time',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:2,n:5,t:'Store PO',feeds:'Start of store lead time · PO → DO',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:2,n:6,t:'DO created',feeds:'DO → Picking done',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:2,n:7,t:'Picking done',feeds:'Picking → Dispatch',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:2,n:8,t:'Dispatch',feeds:'Start of transit (middle mile)',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'},
+ {leg:2,n:9,t:'Store arrival',feeds:'OT% · IF% · OTIF% Raw / Adjusted · end of store lead time',what:'tbc',owner:'tbc',system:'tbc',ts:'tbc',rule:'tbc'}];
+function renderWF(){
+  const val=x=>x==='tbc'?'<span class="tbc">To be provided</span>':esc(x);
+  const step=s=>`<article class="wfs"><div class="wfh"><span class="wfn">${s.n}</span><b>${esc(s.t)}</b></div>
+    <div class="wff">${esc(s.feeds)}</div>
+    <dl class="wfd"><dt>What happens</dt><dd>${val(s.what)}</dd><dt>Owner</dt><dd>${val(s.owner)}</dd><dt>System / source</dt><dd>${val(s.system)}</dd><dt>Timestamp used</dt><dd>${val(s.ts)}</dd><dt>Rule · Dry vs FF</dt><dd>${val(s.rule)}</dd></dl></article>`;
+  const leg=(n,title,icA,icB)=>card(`${n===1?'①':'②'} ${title}`,`<div class="wfrow">${WF.filter(s=>s.leg===n).map(step).join('<span class="wfa" aria-hidden="true"></span>')}</div>`,{sub:n===1?'Supplier → DC · lead time in days':'DC → Store · lead time in hours'});
+  const pending=WF.filter(s=>['what','owner','system','ts','rule'].some(k=>s[k]==='tbc')).length;
+  $('#main').innerHTML=sec('wf','<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M9 6.5h6M18 9v3H12v3"/></svg>','Workflow',
+    'Each step from purchase order to store receipt, and which KPI or lead-time segment it feeds.',
+    `<div class="note" style="margin-top:0"><b>Draft:</b> step names and KPI links come from the KPI definitions. The details of each step (${pending} of ${WF.length} steps still open) will be added when they are provided.</div>`+leg(1,'Supplier delivers to DC')+leg(2,'DC delivers to store'));
 }
 
 /* ================= Download data page (PO detail → CSV) ================= */
@@ -1144,16 +1215,17 @@ const PREN={l7:'Last 7 days',l30:'Last 30 days',tw:'This week',lw:'Last week',mt
 const isDefault=()=>S.pre===DEF.pre&&S.gran===DEF.gran&&S.ffu===DEF.ffu&&S.reg==='ALL'&&S.grd==='ALL'&&S.dcs.size===DCS.length;
 function filterSummary(){const it=[],add=(t,d)=>it.push(d?t:`<b>${t}</b>`),len=nDays(S.from,S.to);
   add(`${PREN[S.pre]}: ${dS(S.from)} – ${dL(S.to)} (${len} d${S.to===LAST?', incl. latest':''})`,S.pre===DEF.pre);
-  if(VIEW!=='dl')add('Trend by '+S.gran,S.gran===DEF.gran);
+  if(VIEW!=='dl')add('Lead-time trend by '+S.gran,S.gran===DEF.gran);
   add(S.dcs.size===DCS.length?`All DCs (Dry ${dcOf('D').length} · FF ${dcOf('F').length})`:'DCs: '+([...S.dcs].map(dcN).join(', ')||'none selected'),S.dcs.size===DCS.length);
   add('FF in '+(S.ffu==='kg'?'kg':'tons'),S.ffu===DEF.ffu);
   add('Region: '+(S.reg==='ALL'?'All':REGN[S.reg]),S.reg==='ALL');add('Grade: '+(S.grd==='ALL'?'All':S.grd),S.grd==='ALL');
   return'Showing: '+it.join(' · ')}
 function syncCtl(){
   const dl=VIEW==='dl';
-  $('#pgSub').textContent=dl?'Download data':'Service Level (OTIF)';
-  $('#pgQ').textContent=dl?'Export PO-level detail (Store PO or Supplier PO) for any date range, with the columns you need, as a CSV file.':'Did suppliers deliver to the DC, and did the DC deliver to stores, on time and in full? How long did each leg take? Dry and Fresh Frozen are shown together, for every DC.';
+  const wf=VIEW==='wf';
+  $('#pgSub').textContent=dl?'Download data':wf?'Workflow':'Service Level (OTIF)';
   $('#slGran').hidden=dl;
+  ['#rhd2','#sLeg','#fSum','.ftgw'].forEach(q=>{const e=$(q);if(e)e.hidden=wf});
   $('#fPre').value=S.pre;$('#fFrom').value=S.from;$('#fTo').value=S.to;
   document.querySelectorAll('#fGran button').forEach(b=>{const on=b.dataset.g===S.gran;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
   document.querySelectorAll('#fUnit button').forEach(b=>{const on=b.dataset.u===S.ffu;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
@@ -1173,7 +1245,7 @@ function toggleSec(s){if(!s)return;const c=!s.classList.contains('col');s.classL
   const b=s.querySelector('.psx');b.setAttribute('aria-expanded',String(!c));b.title=(c?'Show':'Hide')+' this section';b.querySelector('span').textContent=c?'Show':'Hide';spy()}
 function jumpTo(id){const s=document.getElementById(id);if(!s)return;if(s.classList.contains('col'))toggleSec(s);if(isPhone())openMob(false);if(!document.body.classList.contains('scrolled')){document.body.classList.add('scrolled');fitHdr()}s.scrollIntoView({behavior:'smooth',block:'start'})}
 function spy(){let a='top';
-  if(VIEW==='dl')a='view:dl';
+  if(VIEW!=='dash')a='view:'+VIEW;
   else{const hb=Math.max($('#hdr').getBoundingClientRect().bottom,$('#mbar').getBoundingClientRect().bottom,0)+28;
     ['sec1','sec2','defs'].forEach(id=>{const s=document.getElementById(id);if(s&&s.getBoundingClientRect().top<=hb)a=id});
     if(window.scrollY>0&&window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)a='defs'}
@@ -1240,7 +1312,7 @@ $('#navTg').onclick=()=>{if(isPhone()){openMob(false);$('#mnav').focus();return}
 applyMode();
 if(MQ){const f=()=>applyMode();MQ.addEventListener?MQ.addEventListener('change',f):MQ.addListener(f)}
 if(window.matchMedia){const mq=window.matchMedia('(max-width:1099px)');const f=e=>{if(!isPhone()&&navPref()===null)setNav(e.matches)};mq.addEventListener?mq.addEventListener('change',f):mq.addListener(f)}
-window.addEventListener('hashchange',()=>{const v=location.hash==='#download'?'dl':'dash';if(v!==VIEW){VIEW=v;render()}});
+window.addEventListener('hashchange',()=>{const v=viewOfHash(location.hash);if(v!==VIEW){VIEW=v;render();window.scrollTo(0,0)}});
 new MutationObserver(()=>{if(!FK||document.querySelector('.card.focus'))return;const c=[...document.querySelectorAll('#main .card')].find(x=>fkOf(x)===FK);if(c)c.classList.add('focus');else clearFocus()}).observe(document.getElementById('main'),{childList:true,subtree:true});
 window.addEventListener('scroll',()=>{const y=window.scrollY,b=document.body,on=b.classList.contains('scrolled');if(!on&&y>90){b.classList.add('scrolled');fitHdr()}else if(on&&y<12){b.classList.remove('scrolled');fitHdr()}spy()},{passive:true});
 window.addEventListener('resize',fitHdr);
