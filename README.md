@@ -1,7 +1,7 @@
 # DC Mid Mile Dashboard
 
-Service Level (OTIF) dashboard for Dry and Fresh Frozen, Supplier → DC → Store, every DC.
+DC → Store In-full % (Raw), stock-up (NM), Dry · MKB (882 / 852).
 
-- Open `index.html`. It is one self-contained file with no external libraries, so it works offline.
-- **Current data: sample numbers (mockup).** No real company data is in this repository.
-- Built from the project folder with `python scripts/build_dashboard.py`. Do not edit `index.html` by hand.
+- **TEST version with real CP AXTRA data** (automail "MKB-Makro Order allocation", 19–27 Oct 2026). Published on the owner's decision (27 Oct 2026) — internal use.
+- One self-contained file (`index.html`), no external libraries.
+- Built from the project folder with `4 System/scripts/ingest_automail.py` and `4 System/scripts/build_dashboard.py`. Do not edit `index.html` by hand.
