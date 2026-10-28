@@ -1,7 +1,8 @@
 # DC Mid Mile Dashboard
 
-DC → Store In-full % (Raw), stock-up (NM), Dry · MKB (882 / 852).
+Live link: https://cpaxtramakro-scm.github.io/dc-mid-mile-dashboard/
 
-- **TEST version with real CP AXTRA data** (automail "MKB-Makro Order allocation", 19–27 Oct 2026). Published on the owner's decision (27 Oct 2026) — internal use.
-- One self-contained file (`index.html`), no external libraries.
-- Built from the project folder with `4 System/scripts/ingest_automail.py` and `4 System/scripts/build_dashboard.py`. Do not edit `index.html` by hand.
+- **TEST version with real CP AXTRA data**: S01 MKB-Makro Order allocation stock WM2020 (automail). Internal use.
+- Data as of **2026-10-27 07:00**: 9 automail files from 2026-10-19, built 2026-10-27 15:44 on the dashboard device.
+- Published automatically by the publishing Mac on 2026-10-27 16:56 (Bangkok time).
+- One self-contained file (`index.html`), no external libraries. Do not edit it by hand: it is rebuilt on the dashboard device and republished from there.
